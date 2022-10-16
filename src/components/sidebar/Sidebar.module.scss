@@ -1,0 +1,59 @@
+.sidebarContainer {
+    width: 250px;
+    height: 100vh;
+    background: rgb(7, 1, 80);
+    transition-duration: 700ms;
+    position: relative;
+
+    .logo {
+        position: absolute;
+        top: 50px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        padding: 15px;
+        background: #FF9000;
+        border-radius: 10px;
+
+        svg {
+            width: 40px;
+            height: 40px;
+            transition-duration: 700ms;
+        }
+    }
+
+    .logoDuringSidebarToggling {
+        svg {
+            transform: rotate(360deg);
+            transition-duration: 700ms;
+        }
+    }
+
+    .arrowForOpeningSidebar {
+        color: rgb(7, 1, 80);
+        position: absolute;
+        top: 150px;
+        right: -12px;
+        background: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+        border-radius: 50%;
+        border: 1px solid rgb(7, 1, 80);
+        transition-duration: 700ms;
+        cursor: pointer;
+    }
+
+    .arrowForClosingSidebar {
+        transform: rotate(180deg);
+        transition-duration: 700ms;
+    }
+}
+
+.sidebarContainerClosed {
+    width: 100px;
+}
