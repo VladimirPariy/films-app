@@ -2,7 +2,7 @@ import React, {FC} from "react";
 import {Route, Routes} from "react-router-dom";
 import Bookmark from "../bookmark/Bookmark";
 import Main from "../main/Main";
-import {routesURL} from "../../model/routesUrl";
+import {routesURL} from "../../lib/routerEnum";
 
 
 const AppRouter: FC = () => {
