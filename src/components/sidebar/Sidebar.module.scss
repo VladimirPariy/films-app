@@ -1,59 +1,172 @@
 .sidebarContainer {
-    width: 250px;
-    height: 100vh;
-    background: rgb(7, 1, 80);
-    transition-duration: 700ms;
+  position: fixed;
+  background: rgb(7, 1, 80);
+  width: 100%;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  box-shadow: 15px 15px 25px rgba(0, 0, 0, 0.2);
+  height: 150px;
+  transition-duration: 300ms;
+  overflow: hidden;
+
+  .logo {
+    position: absolute;
+    background: #FF9000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 7px;
+    border-radius: 10px;
+    transform: translate(-50%, -50%);
+    top: 25px;
+    left: 25px;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      transition-duration: 700ms;
+    }
+  }
+
+  .logoDuringSidebarToggling {
+    svg {
+      transform: rotate(360deg);
+      transition-duration: 700ms;
+    }
+  }
+
+  .toggleContainer {
     position: relative;
 
-    .logo {
-        position: absolute;
-        top: 50px;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        padding: 15px;
-        background: #FF9000;
-        border-radius: 10px;
-
-        svg {
-            width: 40px;
-            height: 40px;
-            transition-duration: 700ms;
-        }
-    }
-
-    .logoDuringSidebarToggling {
-        svg {
-            transform: rotate(360deg);
-            transition-duration: 700ms;
-        }
-    }
-
     .arrowForOpeningSidebar {
-        color: rgb(7, 1, 80);
-        position: absolute;
-        top: 150px;
-        right: -12px;
-        background: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 5px;
-        border-radius: 50%;
-        border: 1px solid rgb(7, 1, 80);
-        transition-duration: 700ms;
-        cursor: pointer;
+      color: rgb(7, 1, 80);
+      position: absolute;
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 5px;
+      border-radius: 50%;
+      border: 1px solid rgb(7, 1, 80);
+      transition-duration: 700ms;
+      cursor: pointer;
+      top: 14px;
+      right: 20px;
+      transform: rotate(90deg);
     }
 
     .arrowForClosingSidebar {
-        transform: rotate(180deg);
-        transition-duration: 700ms;
+      transform: rotate(270deg);
     }
+  }
+
+  nav {
+    padding: 7px;
+
+    .sidebarMenu {
+      padding-inline-start: 0;
+      position: relative;
+
+      list-style: none;
+      margin: 50px 0 10px 0;
+
+
+      > li:hover {
+        background: #FF9000;
+      }
+
+
+      > li {
+        padding: 10px 8px;
+        cursor: pointer;
+        position: relative;
+        border-radius: 10px;
+        width: 200px;
+        margin: 0 auto;
+        
+        > a {
+          display: flex;
+          color: white;
+          text-decoration: none;
+
+          > svg {
+            margin-top: 0;
+            min-height: 20px;
+            min-width: 20px;
+          }
+
+          > span {
+            position: relative;
+            display: block;
+            padding: 0 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: start;
+            white-space: nowrap;
+          }
+        }
+
+      }
+
+      > li > a.active {
+        color: #ff2;
+      }
+
+    }
+  }
+
 }
 
+
 .sidebarContainerClosed {
-    width: 100px;
+  height: 50px;
+  transition-duration: 300ms;
+}
+
+
+@media screen and (min-width: 769px) {
+  .sidebarContainer {
+    inset: 20px;
+    width: 150px;
+    border-radius: 15px;
+    min-height: 280px;
+    height: auto;
+    overflow: visible;
+
+    .logo {
+      top: 25px;
+      left: 50%;
+    }
+
+    .toggleContainer {
+      .arrowForOpeningSidebar {
+        top: 70px;
+        right: -14px;
+        transform: rotate(0deg);
+      }
+
+      .arrowForClosingSidebar {
+        transform: rotate(180deg);
+      }
+    }
+
+    nav {
+      overflow: hidden;
+
+      .sidebarMenu {
+        flex-direction: column;
+        margin: 100px 0 0 0;
+
+        > li {
+          margin: 0;
+          width: auto;
+        }
+      }
+    }
+  }
+
+  .sidebarContainerClosed {
+    width: 50px;
+  }
 }
