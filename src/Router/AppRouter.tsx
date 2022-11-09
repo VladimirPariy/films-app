@@ -3,8 +3,8 @@ import {Route, Routes} from "react-router-dom";
 
 import {routesURL} from "../Lib/Enums/router.enum";
 
-import Bookmark from "../Pages/bookmark.page/Bookmark";
-import Films from "../Pages/films.page/Films";
+import Bookmark from "../Pages/bookmarkPage/Bookmark";
+import Films from "../Pages/filmsPage/Films";
 
 
 const AppRouter: FC = () => {

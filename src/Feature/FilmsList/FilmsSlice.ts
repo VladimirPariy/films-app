@@ -3,7 +3,7 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {IFilmData} from "../../Lib/Interfaces/FilmData.interface";
 import {IData} from "../../Lib/Interfaces/ResponseData.interface";
 import getFilms from "../../Lib/Utils/fetchingFilms";
-import {RootState} from "../../Store/reduxTypes";
+import {RootState} from "../../Store/storeTypes";
 
 
 interface IAsyncThunkArgs {

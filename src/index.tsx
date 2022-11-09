@@ -4,7 +4,7 @@ import {BrowserRouter} from 'react-router-dom';
 
 import App from './App';
 import './index.scss';
-import {store} from "./Store";
+import {store} from "./Store/store";
 
 
 const root = ReactDOM.createRoot(

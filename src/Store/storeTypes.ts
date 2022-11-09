@@ -1,4 +1,4 @@
-import {store} from "./index";
+import {store} from "./store";
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 
 export type AppDispatch = typeof store.dispatch
