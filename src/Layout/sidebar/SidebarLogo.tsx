@@ -3,7 +3,7 @@ import styles from "./Sidebar.module.scss";
 
 import {GiFilmSpool} from "react-icons/gi";
 
-import {getClassListByCondition} from "../../lib/utils";
+import {getClassListByCondition} from "../../Lib/Utils/funcForGetClassByCondition";
 
 interface Props {
 	isOpenSidebar: boolean

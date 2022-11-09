@@ -2,9 +2,9 @@ import React, {FC} from "react";
 
 const Bookmark: FC = () => {
 	return (
-		<div>
+		<section>
 			Bookmark
-		</div>
+		</section>
 	);
 };
 

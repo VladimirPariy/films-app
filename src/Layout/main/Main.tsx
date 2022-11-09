@@ -1,10 +1,11 @@
 import React, {FC} from "react";
+import AppRouter from "../../Router/AppRouter";
 
 const Main: FC = () => {
 	return (
-		<div>
-			Main
-		</div>
+		<>
+			<AppRouter/>
+		</>
 	);
 };
 

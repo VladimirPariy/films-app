@@ -1,7 +1,7 @@
 import {FC, useState} from 'react'
 import styles from './Sidebar.module.scss'
 
-import {getClassListByCondition} from "../../lib/utils";
+import {getClassListByCondition} from "../../Lib/Utils/funcForGetClassByCondition";
 
 import SidebarMenuList from "./SidebarMenuList";
 import SidebarLogo from "./SidebarLogo";
@@ -15,13 +15,13 @@ const Sidebar: FC = () => {
 	const sidebarContainer = getClassListByCondition(styles, 'sidebarContainer', 'sidebarContainerClosed', !isOpenSidebar);
 	
 	return (
-		<div className={sidebarWrapper}>
+		<section className={sidebarWrapper}>
 			<aside className={sidebarContainer}>
 				<SidebarLogo isOpenSidebar={isOpenSidebar}/>
 				<SidebarToggle isOpenSidebar={isOpenSidebar} setIsOpenSidebar={setIsOpenSidebar}/>
 				<SidebarMenuList/>
 			</aside>
-		</div>
+		</section>
 	)
 }
 
