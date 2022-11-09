@@ -3,7 +3,7 @@ import React, {FC} from "react";
 interface Props {
 }
 
-const FetchedFilms: FC<Props> = (props) => {
+const FilmsList: FC<Props> = (props) => {
 	return (
 		<div>
 		
@@ -11,4 +11,4 @@ const FetchedFilms: FC<Props> = (props) => {
 	);
 };
 
-export default FetchedFilms;
+export default FilmsList;
