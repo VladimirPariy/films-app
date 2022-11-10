@@ -3,7 +3,7 @@ import styles from "./Sidebar.module.scss";
 
 import {AiOutlineLeft} from "react-icons/ai";
 
-import {getClassListByCondition} from "../../Lib/Utils/funcForGetClassByCondition";
+import {getClassListByCondition} from "../../../Lib/Utils/funcForGetClassByCondition";
 
 interface Props {
 	isOpenSidebar: boolean;

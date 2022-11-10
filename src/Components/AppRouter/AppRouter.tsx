@@ -1,10 +1,11 @@
 import React, {FC} from "react";
 import {Route, Routes} from "react-router-dom";
 
-import {routesURL} from "../Lib/Enums/router.enum";
+import {routesURL} from "../../Lib/Enums/router.enum";
 
-import Bookmark from "../Pages/bookmarkPage/Bookmark";
-import Films from "../Pages/filmsPage/Films";
+import Bookmark from "../../Pages/BookmarkPage/Bookmark";
+import Films from "../../Pages/FilmsPage/Films";
+import NotFoundPage from "../../Pages/NotFoundPage/NotFoundPage";
 
 
 const AppRouter: FC = () => {
@@ -12,7 +13,7 @@ const AppRouter: FC = () => {
 		<Routes>
 			<Route path={routesURL.home} element={<Films/>}/>
 			<Route path={routesURL.bookmark} element={<Bookmark/>}/>
-			<Route path={routesURL.anything} element={<Films/>}/>
+			<Route path={routesURL.anything} element={<NotFoundPage/>}/>
 		</Routes>
 	
 	);

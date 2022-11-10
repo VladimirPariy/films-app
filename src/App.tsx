@@ -1,26 +1,15 @@
-import React, {FC, useEffect} from "react";
+import React, {FC} from "react";
 import styles from './App.module.scss';
 
-
-import Main from "./Layout/main/Main";
-import Sidebar from "./Layout/sidebar/Sidebar";
-
-import {loadFilms} from "./Feature/FilmsList/FilmsSlice";
-import {useAppDispatch} from "./Store/storeTypes";
+import Sidebar from "./Components/Layout/Sidebar/Sidebar";
+import Content from "./Components/Layout/Content/Content";
 
 const App: FC = () => {
-	const dispatch = useAppDispatch()
-	
-	useEffect(() => {
-		dispatch(loadFilms({page: 1, category: 'popular'}))
-	}, [])
-	
-	
 	return (
-		<div className={styles.wrapper}>
+		<main className={styles.wrapper}>
 			<Sidebar/>
-			<Main/>
-		</div>
+			<Content/>
+		</main>
 	);
 }
 

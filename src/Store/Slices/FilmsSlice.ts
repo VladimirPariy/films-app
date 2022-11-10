@@ -3,7 +3,7 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {IFilmData} from "../../Lib/Interfaces/FilmData.interface";
 import {IData} from "../../Lib/Interfaces/ResponseData.interface";
 import getFilms from "../../Lib/Utils/fetchingFilms";
-import {RootState} from "../../Store/storeTypes";
+import {RootState} from "../storeTypes";
 
 
 interface IAsyncThunkArgs {
@@ -76,6 +76,6 @@ export const {clearState, setCurrentPage} = FilmsSlice.actions;
 
 export const selectAllFilms = (state: RootState) => state.films.entities;
 export const selectIsLoading = (state: RootState) => state.films.status;
+export const selectCurrentPage = (state: RootState) => state.films.currentPage;
 export const selectTotalPageCount = (state: RootState) => state.films.totalPage;
 export const selectError = (state: RootState) => state.films.error;
-export const selectCurrentPage = (state: RootState) => state.films.currentPage;
