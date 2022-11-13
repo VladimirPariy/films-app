@@ -1,8 +1,8 @@
 import React, {FC} from "react";
 import styles from './App.module.scss';
 
-import Sidebar from "./Components/Layout/Sidebar/Sidebar";
-import Content from "./Components/Layout/Content/Content";
+import Sidebar from "./Layout/Sidebar/Sidebar";
+import Content from "./Layout/Content/Content";
 
 const App: FC = () => {
 	return (

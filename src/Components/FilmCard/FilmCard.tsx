@@ -16,7 +16,7 @@ const FilmCard: FC<Props> = (props) => {
 				<img src={`https://image.tmdb.org/t/p/w500/${props.poster_path}`} alt="Film poster"/>
 			</div>
 			<div className={styles.extraInfoWrapper}>
-				<div>{props.release_date.slice(0, 4)}</div>
+				<div>{props.release_date ? props.release_date.slice(0, 4) : 'Release date not announced'}</div>
 				<div>{props.vote_average}</div>
 			</div>
 			<div className={styles.filmTitle}>

@@ -1,7 +1,9 @@
 import React, {FC, useEffect} from "react";
 
 import {useAppDispatch, useAppSelector} from "../../Store/storeTypes";
-import {loadFilms, selectAllFilms, selectCurrentPage, selectError, selectIsLoading, selectTotalPageCount} from "../../Store/Slices/FilmsSlice";
+import {clearState, loadFilms, selectAllFilms, selectCurrentPage, selectError, selectIsLoading} from "../../Store/Slices/FilmsSlice";
+import {useDispatchForCleanup} from "../../Lib/Hooks/UseDispatchForCleanup";
+
 import FilmCard from "../FilmCard/FilmCard";
 import FilmListContainer from "../FilmListContainer/FilmListContainer";
 
@@ -11,16 +13,18 @@ const FilmsList: FC = () => {
 	const isLoading = useAppSelector(selectIsLoading);
 	const error = useAppSelector(selectError);
 	const currentPage = useAppSelector(selectCurrentPage);
-	const totalPage = useAppSelector(selectTotalPageCount);
-	
 	
 	const dispatch = useAppDispatch()
+	const dispatchApp = useDispatchForCleanup()
 	
 	useEffect(() => {
-		dispatch(loadFilms({page: 1, category: 'popular'}))
+		if (isLoading === 'loading') return;
+		dispatch(loadFilms({page: currentPage, category: 'popular'}))
+	}, [currentPage, dispatch])
+	
+	useEffect(() => {
+		return () => dispatchApp(clearState())
 	}, [])
-	
-	
 	return (
 		<>
 			{error && <div>ERROR</div>}

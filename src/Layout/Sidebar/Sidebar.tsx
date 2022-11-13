@@ -1,7 +1,7 @@
 import {FC, useState} from 'react'
 import styles from './Sidebar.module.scss'
 
-import {getClassListByCondition} from "../../../Lib/Utils/funcForGetClassByCondition";
+import {getClassListByCondition} from "../../Lib/Utils/funcForGetClassByCondition";
 
 import SidebarMenuList from "./SidebarMenuList";
 import SidebarLogo from "./SidebarLogo";

@@ -31,7 +31,7 @@ const initialState: IInitialState = {
 	status: "idle",
 	error: null,
 	entities: [],
-	currentPage: 0,
+	currentPage: 1,
 	totalPage: 0
 }
 

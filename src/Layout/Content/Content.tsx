@@ -2,7 +2,7 @@ import React, {FC} from "react";
 
 import styles from './Content.module.scss';
 
-import AppRouter from "../../AppRouter/AppRouter";
+import AppRouter from "../../Components/AppRouter/AppRouter";
 
 const Content: FC = () => {
 	return (
