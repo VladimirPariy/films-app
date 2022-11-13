@@ -1,0 +1,10 @@
+.filmsTitle {
+  font-size: 2rem;
+  margin: 30px 20px 20px;
+}
+
+.filmsList {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}

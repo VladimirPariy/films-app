@@ -1,7 +1,8 @@
 .sidebarWrapper {
   position: relative;
-  width: 100%;
-  height: 150px;
+  width: 100vw;
+  height: 50px;
+  z-index: 1;
 
   .sidebarContainer {
     position: fixed;
@@ -128,8 +129,9 @@
 @media screen and (min-width: 769px) {
   .sidebarWrapper {
     position: relative;
-    width: 190px;
+    width: 60px;
     height: 100vh;
+    margin-right: 30px;
 
     .sidebarContainer {
       inset: 20px;
@@ -172,11 +174,10 @@
     }
   }
   .sidebarWrapperClosed {
-    width: 90px;
+    width: 60px;
 
     .sidebarContainerClosed {
       width: 50px;
     }
-
   }
 }
