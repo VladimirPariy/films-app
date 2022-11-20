@@ -30,14 +30,6 @@ class ImdbAPI {
 		});
 		return data
 	}
-	
-	async getActors(id: string,) {
-		const {data} = await axios.get(`/${id}/credits`, {
-			params: {api_key: API_KEY},
-			baseURL: BASE_URL,
-		});
-		return data
-	}
 }
 
 export default new ImdbAPI();

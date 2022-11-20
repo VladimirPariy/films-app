@@ -1,14 +1,14 @@
 .filmCardContainer {
-  margin: 1.25rem auto;
+  margin: 0.5rem auto;
   cursor: pointer;
-  width: 13.75rem;
+  width: 9rem;
   color: white;
   text-decoration: none;
 
   .imgContainer {
-    height: 20rem;
+    height: 15rem;
     width: 100%;
-    max-width: 13.75rem;
+    max-width: 9rem;
     display: flex;
     position: relative;
 
@@ -16,33 +16,105 @@
       border-radius: 0.75rem;
       object-fit: cover;
       width: 100%;
-      max-width: 13.75rem;
+      max-width: 9rem;
       max-height: 100%;
     }
   }
 
   .extraInfoWrapper {
     display: flex;
+    justify-content: space-between;
     color: rgb(156 163 175);
     width: 100%;
     margin: 0.25rem auto auto;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
+    font-size: 0.66rem;
+    line-height: 1rem;
+
 
     :last-child {
       background: green;
       padding: 0 0.25rem;
       color: white;
       border-radius: 0.25rem;
-      margin-left: 1.25rem;
+      margin-right: 0.25rem;
     }
   }
 
   .filmTitle {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
+    font-size: 1rem;
+    line-height: 1.25rem;
     width: 100%;
-    max-width: 13.75rem;
+    max-width: 10rem;
     text-align: start;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .filmCardContainer {
+    width: 11.25rem;
+
+    .imgContainer {
+      height: 17rem;
+      max-width: 11.25rem;
+
+      > img {
+        border-radius: 1rem;
+        max-width: 11.25rem;
+      }
+    }
+
+    .extraInfoWrapper {
+      margin: 0.5rem auto auto;
+      font-size: 0.85rem;
+      line-height: 1.15rem;
+
+
+      :last-child {
+        padding: 0 0.5rem;
+        border-radius: 0.33rem;
+        margin-right: 0.33rem;
+      }
+    }
+
+    .filmTitle {
+      font-size: 1.25rem;
+      line-height: 1.33rem;
+      max-width: 11.25rem;
+    }
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .filmCardContainer {
+    width: 13.75rem;
+
+    .imgContainer {
+      height: 20rem;
+      max-width: 13.75rem;
+
+      > img {
+        border-radius: 1.25rem;
+        max-width: 13.75rem;
+      }
+    }
+
+    .extraInfoWrapper {
+      margin: 0.75rem auto auto;
+      font-size: 1rem;
+      line-height: 1.25rem;
+
+
+      :last-child {
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.5rem;
+        margin-right: 0.5rem;
+      }
+    }
+
+    .filmTitle {
+      font-size: 1.5rem;
+      line-height: 1.5rem;
+      max-width: 13.75rem;
+    }
   }
 }

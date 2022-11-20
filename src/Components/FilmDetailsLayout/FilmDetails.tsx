@@ -14,14 +14,11 @@ const FilmDetails: FC<Props> = (props) => {
 	
 	const trailer = getTrailer(props.trailer.results);
 	const runTime = getTime(props.runtime);
-	const budgetSum = props.budget.toString().split('').reverse().map((item, index, arr) => {
+	const budgetSum = props.budget.toString().split('').reverse().map((item, index) => {
 		if (index === 0) return item
-		if (index % 3 === 0) {
-			return item = `${item},`
-		}
-		return item
+		return (index % 3 === 0) ? item = `${item},` : item
 	}).reverse().join('')
-	console.log(budgetSum)
+	
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.headerPart}>

@@ -7,10 +7,16 @@ import {filmsCategories} from "../../Lib/Enums/filmCategories.enum";
 import imdbAPI from "../../Lib/api/imdbAPI";
 
 
-export const loadFilms = createAsyncThunk<IFilmsListData, { currentPage: number }>(
+export const loadFilms = createAsyncThunk<IFilmsListData, { currentPage: number }, { state: RootState }>(
 	'@@films/loadingFilms',
 	async ({currentPage}) => {
 		return await imdbAPI.getFilmsList(filmsCategories.popular, currentPage);
+	},
+	{
+		condition: (_, {getState}) => {
+			const {status} = getState().films
+			return status !== 'loading'
+		}
 	}
 )
 
