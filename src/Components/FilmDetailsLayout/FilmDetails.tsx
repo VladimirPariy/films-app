@@ -14,26 +14,39 @@ const FilmDetails: FC<Props> = (props) => {
 	
 	const trailer = getTrailer(props.trailer.results);
 	const runTime = getTime(props.runtime);
-	
+	const budgetSum = props.budget.toString().split('').reverse().map((item, index, arr) => {
+		if (index === 0) return item
+		if (index % 3 === 0) {
+			return item = `${item},`
+		}
+		return item
+	}).reverse().join('')
+	console.log(budgetSum)
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.headerPart}>
 				<div className={styles.title}>{props.title}</div>
-				<span className={styles.releaseDate}>{props.release_date.slice(0, 4)}</span>
-				{props.runtime &&
-					<span className={styles.runtime}>{runTime}</span>}
-				<div className={styles.filmStatus}>Status: {props.status}</div>
+				<div className={styles.subtitle}>
+					<span className={styles.releaseDate}>{props.release_date.slice(0, 4)}</span>
+					{props.runtime &&
+						<span className={styles.runtime}>{runTime}</span>
+					}
+					<div className={styles.filmStatus}><span className={styles.statusTitle}>Status:</span>{props.status}</div>
+				</div>
+			
 			</div>
 			<div className={styles.interactivePart}>
 				{props.poster_path &&
 					<img className={styles.poster}
 							 src={`https://image.tmdb.org/t/p/w500/${props.poster_path}`}
-							 alt="poster"/>}
+							 alt="poster"/>
+				}
 				{trailer &&
 					<iframe src={`https://www.youtube.com/embed/${trailer.key}`}
 									allowFullScreen
 									title="video"
-									className={styles.trailer}/>}
+									className={styles.trailer}/>
+				}
 			</div>
 			
 			<div className={styles.genresContainer}>
@@ -46,14 +59,21 @@ const FilmDetails: FC<Props> = (props) => {
 			
 			<div className={styles.extraPart}>
 				<div className={styles.companiesContainer}>
-					<span>Production companies:</span>
-					{props.production_companies.map(company => (
-						<div className={styles.companyName} key={company.id}>{company.name}</div>
-					))}
+					<span className={styles.titleCompany}>Production companies:</span>
+					<span className={styles.companyName}>{props.production_companies.map(company => company.name).join(', ')}</span>
 				</div>
-				<div className={styles.budget}><span>Budget: </span><span>{props.budget}$</span></div>
+				{props.budget > 0 &&
+					<div className={styles.budget}>
+						<span className={styles.titleBudget}>Budget: </span>
+						<span className={styles.budgetSum}>{budgetSum}$</span>
+					</div>
+				}
 				{props.homepage &&
-					<a className={styles.homepage} href={props.homepage} target='_blank' rel="noreferrer">{props.homepage}</a>}
+					<div className={styles.homepage}>
+						<span className={styles.titleWebsite}>Website:</span>
+						<a className={styles.website} href={props.homepage} target='_blank' rel="noreferrer">{props.homepage}</a>
+					</div>
+				}
 			</div>
 		</div>
 	);
