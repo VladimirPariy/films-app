@@ -1,5 +1,6 @@
 export enum routesURL {
 	home = '/',
+	filmByID = '/:id',
 	bookmark = '/bookmark',
-	anything = '*'
+	notFound = '*'
 }

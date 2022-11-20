@@ -7,7 +7,6 @@ import {useAppDispatch, useAppSelector} from "../../Store/storeTypes";
 const Observer: FC = () => {
 	const dispatch = useAppDispatch();
 	const lastElemRef = useRef<HTMLDivElement>(null);
-	console.log(lastElemRef)
 	
 	const isLoading = useAppSelector(selectIsLoading);
 	const totalPages = useAppSelector(selectTotalPageCount);

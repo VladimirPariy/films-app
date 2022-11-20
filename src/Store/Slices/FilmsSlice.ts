@@ -1,28 +1,24 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
-import {IFilmData} from "../../Lib/Interfaces/FilmData.interface";
-import {IData} from "../../Lib/Interfaces/ResponseData.interface";
-import getFilms from "../../Lib/Utils/fetchingFilms";
-import {RootState} from "../storeTypes";
+import {LoadingStatusType, RootState} from "../storeTypes";
+
+import {IFilmFromList, IFilmsListData} from "../../Lib/Interfaces/FilmList.interface";
+import getFilms from "../../Lib/api/fetchingFilms";
+import {filmsCategories} from "../../Lib/Enums/filmCategories.enum";
 
 
-interface IAsyncThunkArgs {
-	page: number;
-	category?: string;
-}
-
-export const loadFilms = createAsyncThunk<IData, IAsyncThunkArgs>(
+export const loadFilms = createAsyncThunk<IFilmsListData, { currentPage: number }>(
 	'@@films/loadingFilms',
-	async ({page, category = 'popular'}) => {
-		return await getFilms(category, process.env.REACT_APP_API_KEY || '', page);
+	async ({currentPage}) => {
+		return await getFilms(filmsCategories.popular, process.env.REACT_APP_API_KEY || '', currentPage);
 	}
 )
 
 
 interface IInitialState {
-	status: "idle" | "loading" | "received" | "rejected";
+	status: LoadingStatusType;
 	error: null | string;
-	entities: IFilmData[];
+	entities: IFilmFromList[];
 	currentPage: number;
 	totalPage: number;
 }
@@ -36,13 +32,14 @@ const initialState: IInitialState = {
 }
 
 const FilmsSlice = createSlice({
-	name: "@films",
+	name: "@@films",
 	initialState,
 	reducers: {
 		clearState: (state) => {
 			state.error = null;
+			state.status = "idle";
 			state.entities = [];
-			state.currentPage = 0;
+			state.currentPage = 1;
 			state.totalPage = 0;
 		},
 		setCurrentPage: (state) => {

@@ -1,8 +1,11 @@
 import React, {FC} from "react";
+import {Link} from "react-router-dom";
+
 import styles from './FilmCard.module.scss'
 
 interface Props {
-	poster_path: string;
+	ID: number;
+	poster_path: string | null;
 	release_date: string;
 	vote_average: number;
 	title: string;
@@ -11,7 +14,7 @@ interface Props {
 const FilmCard: FC<Props> = (props) => {
 	
 	return (
-		<div className={styles.filmCardContainer}>
+		<Link className={styles.filmCardContainer} to={`/${props.ID}`}>
 			<div className={styles.imgContainer}>
 				<img src={`https://image.tmdb.org/t/p/w500/${props.poster_path}`} alt="Film poster"/>
 			</div>
@@ -22,7 +25,7 @@ const FilmCard: FC<Props> = (props) => {
 			<div className={styles.filmTitle}>
 				{props.title}
 			</div>
-		</div>
+		</Link>
 	);
 };
 
