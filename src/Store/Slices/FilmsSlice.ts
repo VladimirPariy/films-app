@@ -3,14 +3,14 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {LoadingStatusType, RootState} from "../storeTypes";
 
 import {IFilmFromList, IFilmsListData} from "../../Lib/Interfaces/FilmList.interface";
-import getFilms from "../../Lib/api/fetchingFilms";
 import {filmsCategories} from "../../Lib/Enums/filmCategories.enum";
+import imdbAPI from "../../Lib/api/imdbAPI";
 
 
 export const loadFilms = createAsyncThunk<IFilmsListData, { currentPage: number }>(
 	'@@films/loadingFilms',
 	async ({currentPage}) => {
-		return await getFilms(filmsCategories.popular, process.env.REACT_APP_API_KEY || '', currentPage);
+		return await imdbAPI.getFilmsList(filmsCategories.popular, currentPage);
 	}
 )
 

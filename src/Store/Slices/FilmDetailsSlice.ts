@@ -2,13 +2,13 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
 import {LoadingStatusType, RootState} from "../storeTypes";
 import {IFilmDetails} from "../../Lib/Interfaces/FilmDetails.interface";
-import {getFilmDetails} from "../../Lib/api/fetchingFilmDetails";
+import imdbAPI from "../../Lib/api/imdbAPI";
 
 
 export const loadFilmDetails = createAsyncThunk<IFilmDetails, { id: string }>(
 	'@@details/loadingDetails',
 	async ({id}) => {
-		return await getFilmDetails(id, process.env.REACT_APP_API_KEY || '');
+		return await imdbAPI.getFilmDetails(id,);
 	})
 
 interface IInitialState {
