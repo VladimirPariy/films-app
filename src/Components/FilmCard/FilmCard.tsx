@@ -2,7 +2,9 @@ import React, {FC} from "react";
 import {Link} from "react-router-dom";
 
 import styles from './FilmCard.module.scss'
+import {RiBookmarkLine} from "react-icons/ri";
 
+//RiBookmarkFill
 interface Props {
 	ID: number;
 	poster_path: string | null;
@@ -15,6 +17,9 @@ const FilmCard: FC<Props> = (props) => {
 	
 	return (
 		<Link className={styles.filmCardContainer} to={`/${props.ID}`}>
+			<button className={styles.bookmarkContainer} onClick={(e) => e.preventDefault()}>
+				<RiBookmarkLine/>
+			</button>
 			<div className={styles.imgContainer}>
 				<img src={`https://image.tmdb.org/t/p/w500/${props.poster_path}`} alt="Film poster"/>
 			</div>

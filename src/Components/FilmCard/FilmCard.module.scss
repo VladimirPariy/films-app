@@ -1,31 +1,69 @@
+@use "../../Scss/index" as *;
+
 .filmCardContainer {
   margin: 0.5rem auto;
   cursor: pointer;
-  width: 9rem;
-  color: white;
+  width: $phone_width;
+  color: $white;
   text-decoration: none;
+  position: relative;
+
+  .bookmarkContainer {
+    position: absolute;
+    cursor: pointer;
+    top: 3%;
+    right: 3%;
+    border: none;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    > svg {
+      z-index: 1;
+      width: 1.25rem;
+      height: 1.25rem;
+      background: rgba(0, 0, 0, 0.5);
+      transition-duration: $transition_dur;
+      border-radius: $circle;
+      padding: 0.35rem;
+      color: $white;
+    }
+
+    > svg:hover {
+      transition-duration: $transition_dur;
+      background: rgba(0, 0, 0, 0.8);
+    }
+  }
+
 
   .imgContainer {
     height: 15rem;
-    width: 100%;
-    max-width: 9rem;
+    width: $full;
+    max-width: $phone_width;
     display: flex;
     position: relative;
 
     > img {
       border-radius: 0.75rem;
       object-fit: cover;
-      width: 100%;
-      max-width: 9rem;
-      max-height: 100%;
+      width: $full;
+      max-width: $phone_width;
+      max-height: $full;
+      transition-duration: $transition_dur;
+    }
+
+    > img:hover {
+      scale: 1.02;
+      transition-duration: $transition_dur;
     }
   }
 
   .extraInfoWrapper {
     display: flex;
     justify-content: space-between;
-    color: rgb(156 163 175);
-    width: 100%;
+    color: $grey;
+    width: $full;
     margin: 0.25rem auto auto;
     font-size: 0.66rem;
     line-height: 1rem;
@@ -34,7 +72,7 @@
     :last-child {
       background: green;
       padding: 0 0.25rem;
-      color: white;
+      color: $white;
       border-radius: 0.25rem;
       margin-right: 0.25rem;
     }
@@ -43,23 +81,34 @@
   .filmTitle {
     font-size: 1rem;
     line-height: 1.25rem;
-    width: 100%;
-    max-width: 10rem;
+    width: $full;
+    max-width: $phone_width;
     text-align: start;
   }
 }
 
 @media screen and (min-width: 769px) {
   .filmCardContainer {
-    width: 11.25rem;
+    width: $laptop_width;
+
+    .bookmarkContainer {
+      top: 4%;
+      right: 4%;
+
+      > svg {
+        width: 1.33rem;
+        height: 1.33rem;
+        padding: 0.42rem;
+      }
+    }
 
     .imgContainer {
       height: 17rem;
-      max-width: 11.25rem;
+      max-width: $laptop_width;
 
       > img {
         border-radius: 1rem;
-        max-width: 11.25rem;
+        max-width: $laptop_width;
       }
     }
 
@@ -79,22 +128,33 @@
     .filmTitle {
       font-size: 1.25rem;
       line-height: 1.33rem;
-      max-width: 11.25rem;
+      max-width: $laptop_width;
     }
   }
 }
 
 @media screen and (min-width: 1025px) {
   .filmCardContainer {
-    width: 13.75rem;
+    width: $desktop_width;
+
+    .bookmarkContainer {
+      top: 5%;
+      right: 5%;
+
+      > svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        padding: 0.5rem;
+      }
+    }
 
     .imgContainer {
       height: 20rem;
-      max-width: 13.75rem;
+      max-width: $desktop_width;
 
       > img {
         border-radius: 1.25rem;
-        max-width: 13.75rem;
+        max-width: $desktop_width;
       }
     }
 
@@ -114,7 +174,7 @@
     .filmTitle {
       font-size: 1.5rem;
       line-height: 1.5rem;
-      max-width: 13.75rem;
+      max-width: $desktop_width;
     }
   }
 }
