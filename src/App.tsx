@@ -1,13 +1,15 @@
-import React, {FC} from "react";
+import React, {FC, useState} from "react";
 import styles from './App.module.scss';
 
 import Sidebar from "./Layout/Sidebar/Sidebar";
 import Content from "./Layout/Content/Content";
 
 const App: FC = () => {
+	const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false)
+	
 	return (
-		<main className={styles.wrapper}>
-			<Sidebar/>
+		<main className={styles.wrapper} onClick={() => setIsOpenSidebar(false)}>
+			<Sidebar isOpenSidebar={isOpenSidebar} setIsOpenSidebar={setIsOpenSidebar}/>
 			<Content/>
 		</main>
 	);

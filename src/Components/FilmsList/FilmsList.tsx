@@ -25,7 +25,7 @@ const FilmsList: FC = () => {
 	return (
 		<>
 			{error && <div>ERROR</div>}
-			{films &&
+			{films.length > 0 &&
 				<FilmListContainer title={'Most popular'}>
 					{films.map(film => (
 						<FilmCard key={film.id}

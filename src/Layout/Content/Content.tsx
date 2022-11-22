@@ -4,6 +4,7 @@ import styles from './Content.module.scss';
 
 import AppRouter from "../../Components/AppRouter/AppRouter";
 
+
 const Content: FC = () => {
 	return (
 		<section className={styles.contentWrapper}>
