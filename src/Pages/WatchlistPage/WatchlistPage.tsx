@@ -1,6 +1,6 @@
 import React, {FC} from "react";
 
-const Bookmark: FC = () => {
+const WatchlistPage: FC = () => {
 	return (
 		<section>
 			Bookmark
@@ -8,4 +8,4 @@ const Bookmark: FC = () => {
 	);
 };
 
-export default Bookmark;
+export default WatchlistPage;

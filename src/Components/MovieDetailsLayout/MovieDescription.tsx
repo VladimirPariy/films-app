@@ -2,7 +2,7 @@ import React, {FC} from "react";
 
 import styles from "./MovieDetails.module.scss";
 
-import {IGenres} from "../../Lib/Interfaces/FilmDetails.interface";
+import {IGenres} from "../../Lib/Interfaces/MovieDetails.interface";
 
 interface Props {
 	genres: IGenres[];

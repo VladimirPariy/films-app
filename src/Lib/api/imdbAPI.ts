@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import {IFilmDetails, ITrailerData} from "../Interfaces/FilmDetails.interface";
+import {IFilmDetails, ITrailerData} from "../Interfaces/MovieDetails.interface";
 import {IFilmsListData} from "../Interfaces/FilmList.interface";
 import {UrlEnum} from "../Enums/url.enum";
 

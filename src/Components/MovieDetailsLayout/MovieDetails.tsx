@@ -4,7 +4,7 @@ import {useParams} from "react-router";
 import styles from './MovieDetails.module.scss';
 
 import {useAppDispatch, useAppSelector} from "../../Store/storeTypes";
-import {clearState, loadFilmDetails, selectDetails, selectDetailsError, selectIsLoadingDetails} from "../../Store/Slices/FilmDetailsSlice";
+import {clearState, loadFilmDetails, selectDetails, selectDetailsError, selectIsLoadingDetails} from "../../Store/Slices/MovieDetailsSlice";
 
 import {useCleanup} from "../../Lib/Hooks/useCleanup";
 

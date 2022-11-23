@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
 import {LoadingStatusType, RootState} from "../storeTypes";
-import {IFilmDetails} from "../../Lib/Interfaces/FilmDetails.interface";
+import {IFilmDetails} from "../../Lib/Interfaces/MovieDetails.interface";
 import imdbAPI from "../../Lib/api/imdbAPI";
 
 
@@ -24,7 +24,7 @@ const initialState: IInitialState = {
 }
 
 
-const FilmDetailsSlice = createSlice({
+const MovieDetailsSlice = createSlice({
 	name: '@@details',
 	initialState,
 	reducers: {
@@ -52,9 +52,9 @@ const FilmDetailsSlice = createSlice({
 	}
 })
 
-export const filmDetailsReducer = FilmDetailsSlice.reducer;
+export const filmDetailsReducer = MovieDetailsSlice.reducer;
 
-export const {clearState} = FilmDetailsSlice.actions;
+export const {clearState} = MovieDetailsSlice.actions;
 
 export const selectDetails = (state: RootState) => state.filmDetails.entities
 export const selectIsLoadingDetails = (state: RootState) => state.filmDetails.status

@@ -1,9 +1,8 @@
-import React, {FC, MouseEvent, useState} from "react";
+import React, {FC} from "react";
 
 import styles from "./MovieDetails.module.scss";
 
 import {getTime} from "../../Lib/Utils/getTime";
-import BookmarkButton from "../BookmarkButton/BookmarkButton";
 
 interface Props {
 	title: string;
@@ -17,11 +16,11 @@ const MovieDetailsHeader: FC<Props> = (props) => {
 	
 	const runTime = getTime(props.runtime);
 	
-	const [isFavourite, setIsFavourite] = useState(false)
-	const bookmarkClickHandler = (e: MouseEvent) => {
-		e.preventDefault();
-		setIsFavourite(prev => !prev)
-	};
+	// const [isFavourite, setIsFavourite] = useState(false)
+	// const bookmarkClickHandler = (e: MouseEvent) => {
+	// 	e.preventDefault();
+	// 	// setIsFavourite(prev => !prev)
+	// };
 	return (
 		<div className={styles.headerPart}>
 			<div className={styles.title}>{props.title}</div>
@@ -36,10 +35,10 @@ const MovieDetailsHeader: FC<Props> = (props) => {
 						{props.status}
 					</div>
 				</div>
-				<BookmarkButton className={styles.bookmark}
-												bookmarkClickHandler={bookmarkClickHandler}>
-					{isFavourite ? <span><span>&#10003;</span>In Watchlist</span> : <span><span>+</span>Add to Watchlist</span>}
-				</BookmarkButton>
+				{/*<WatchlistButton className={styles.bookmark}*/}
+				{/*								 bookmarkClickHandler={bookmarkClickHandler}>*/}
+				{/*	{isFavourite ? <span><span>&#10003;</span>In Watchlist</span> : <span><span>+</span>Add to Watchlist</span>}*/}
+				{/*</WatchlistButton>*/}
 			</div>
 		</div>
 	);

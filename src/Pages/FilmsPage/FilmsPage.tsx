@@ -3,7 +3,7 @@ import React, {FC} from "react";
 import FilmsList from "../../Components/FilmsList/FilmsList";
 import Observer from "../../Components/Observer/Observer";
 
-const Films: FC = () => {
+const FilmsPage: FC = () => {
 	return (
 		<>
 			<FilmsList/>
@@ -12,4 +12,4 @@ const Films: FC = () => {
 	);
 };
 
-export default Films;
+export default FilmsPage;

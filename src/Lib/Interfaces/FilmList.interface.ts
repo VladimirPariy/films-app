@@ -1,4 +1,4 @@
-import {IFilm} from "./FilmDetails.interface";
+import {IFilm} from "./MovieDetails.interface";
 
 export interface IFilmsListData {
 	page: number;

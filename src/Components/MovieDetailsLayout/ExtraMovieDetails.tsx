@@ -2,7 +2,7 @@ import React, {FC} from "react";
 
 import styles from "./MovieDetails.module.scss";
 
-import {IProductionCompanies} from "../../Lib/Interfaces/FilmDetails.interface";
+import {IProductionCompanies} from "../../Lib/Interfaces/MovieDetails.interface";
 
 interface Props {
 	budget: number;

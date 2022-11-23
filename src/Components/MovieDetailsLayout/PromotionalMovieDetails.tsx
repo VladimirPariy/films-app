@@ -4,7 +4,7 @@ import styles from "./MovieDetails.module.scss";
 
 import {UrlEnum} from "../../Lib/Enums/url.enum";
 import {getTrailer} from "../../Lib/Utils/getTrailer";
-import {ITrailerData} from "../../Lib/Interfaces/FilmDetails.interface";
+import {ITrailerData} from "../../Lib/Interfaces/MovieDetails.interface";
 
 interface Props {
 	poster_path: string | null;

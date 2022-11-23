@@ -1,4 +1,4 @@
-import {ITrailer} from "../Interfaces/FilmDetails.interface";
+import {ITrailer} from "../Interfaces/MovieDetails.interface";
 
 export const getTrailer = (trailers: ITrailer[]): ITrailer | undefined => {
 	return trailers.find(trailer => {
