@@ -1,4 +1,5 @@
 import React, {Dispatch, FC} from "react";
+
 import styles from "./Sidebar.module.scss";
 
 import {AiOutlineLeft} from "react-icons/ai";
@@ -7,7 +8,7 @@ import {getClassListByCondition} from "../../Lib/Utils/getClassByCondition";
 
 interface Props {
 	isOpenSidebar: boolean;
-	setIsOpenSidebar: Dispatch<React.SetStateAction<boolean>>
+	setIsOpenSidebar: Dispatch<React.SetStateAction<boolean>>;
 }
 
 const SidebarToggle: FC<Props> = ({isOpenSidebar, setIsOpenSidebar}) => {
@@ -15,10 +16,11 @@ const SidebarToggle: FC<Props> = ({isOpenSidebar, setIsOpenSidebar}) => {
 	
 	const toggleSidebarHandler = (): void => {
 		setIsOpenSidebar(prev => !prev);
-	}
+	};
 	return (
 		<section className={styles.toggleContainer}>
-			<article className={sidebarToggling} onClick={toggleSidebarHandler}>
+			<article className={sidebarToggling}
+							 onClick={toggleSidebarHandler}>
 				<AiOutlineLeft/>
 			</article>
 		</section>

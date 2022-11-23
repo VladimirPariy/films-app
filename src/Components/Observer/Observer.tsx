@@ -1,6 +1,7 @@
 import React, {FC, useRef} from "react";
 
 import {useObserver} from "../../Lib/Hooks/useObserver";
+
 import {selectCurrentPage, selectIsLoading, selectTotalPageCount, setCurrentPage} from "../../Store/Slices/FilmsSlice";
 import {useAppDispatch, useAppSelector} from "../../Store/storeTypes";
 
@@ -15,7 +16,8 @@ const Observer: FC = () => {
 	useObserver(lastElemRef, currentPage < totalPages, isLoading, () => dispatch(setCurrentPage()));
 	
 	return (
-		<div ref={lastElemRef} style={{height: '20px'}}/>
+		<div ref={lastElemRef}
+				 style={{height: '20px'}}/>
 	);
 };
 

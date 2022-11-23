@@ -1,13 +1,15 @@
-import React, {FC, MouseEvent} from "react";
+import React, {FC, MouseEvent, useState} from "react";
 import {Link} from "react-router-dom";
-import {RiBookmarkLine} from "react-icons/ri";
+import {RiBookmarkFill, RiBookmarkLine} from "react-icons/ri";
 
 import styles from './FilmCard.module.scss'
 
 import BookmarkButton from "../BookmarkButton/BookmarkButton";
 import {UrlEnum} from "../../Lib/Enums/url.enum";
 
-//RiBookmarkFill
+import FilmInfo from "./FilmInfo";
+
+
 interface Props {
 	ID: number;
 	poster_path: string | null;
@@ -18,25 +20,27 @@ interface Props {
 
 const FilmCard: FC<Props> = (props) => {
 	
+	const [isFavourite, setIsFavourite] = useState(false)
+	
 	const bookmarkClickHandler = (e: MouseEvent) => {
-		e.preventDefault()
-	}
+		e.preventDefault();
+		setIsFavourite(prev => !prev)
+	};
 	
 	return (
-		<Link className={styles.filmCardContainer} to={`/${props.ID}`}>
-			<BookmarkButton className={styles.bookmarkContainer} bookmarkClickHandler={bookmarkClickHandler}>
-				<RiBookmarkLine/>
+		<Link className={styles.filmCardContainer}
+					to={`/${props.ID}`}>
+			<BookmarkButton className={styles.bookmarkContainer}
+											bookmarkClickHandler={bookmarkClickHandler}>
+				{isFavourite ? <RiBookmarkFill/> : <RiBookmarkLine/>}
 			</BookmarkButton>
 			<div className={styles.imgContainer}>
-				<img src={`${UrlEnum.imgURL}${props.poster_path}`} alt="Film poster"/>
+				<img src={`${UrlEnum.imgURL}${props.poster_path}`}
+						 alt="Film poster"/>
 			</div>
-			<div className={styles.extraInfoWrapper}>
-				<div>{props.release_date ? props.release_date.slice(0, 4) : 'Release date not announced'}</div>
-				<div>{props.vote_average}</div>
-			</div>
-			<div className={styles.filmTitle}>
-				{props.title}
-			</div>
+			<FilmInfo release_date={props.release_date}
+								vote_average={props.vote_average}
+								title={props.title}/>
 		</Link>
 	);
 };

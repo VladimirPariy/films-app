@@ -1,4 +1,5 @@
 import React, {FC} from "react";
+
 import styles from "./Sidebar.module.scss";
 
 import {GiFilmSpool} from "react-icons/gi";
@@ -6,7 +7,7 @@ import {GiFilmSpool} from "react-icons/gi";
 import {getClassListByCondition} from "../../Lib/Utils/getClassByCondition";
 
 interface Props {
-	isOpenSidebar: boolean
+	isOpenSidebar: boolean;
 }
 
 const SidebarLogo: FC<Props> = ({isOpenSidebar}) => {

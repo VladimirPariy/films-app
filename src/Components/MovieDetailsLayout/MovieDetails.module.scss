@@ -13,6 +13,7 @@
     color: $light_grey;
     font-size: 0.75rem;
 
+
     .title {
       font-size: 2rem;
       line-height: 2.125rem;
@@ -20,39 +21,67 @@
       margin-bottom: 0.33rem;
     }
 
-    .subtitle {
-      .releaseDate {
-        color: $dark_grey;
-      }
+    > div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
-      .runtime {
-        color: $dark_grey;
-      }
-
-      .runtime:before {
-        content: "";
-        background-color: $dark_grey;
-        display: inline-block;
-        margin: 0 0.5rem 0.2rem;
-        font-size: 1rem;
-        line-height: .5rem;
-        padding: 1px;
-        border-radius: $circle;
-        vertical-align: middle;
-      }
-
-      .filmStatus {
-        color: $dark_grey;
-
-        .statusTitle {
-          font-weight: bold;
-          margin-right: 0.5rem;
+      .subtitle {
+        .releaseDate {
+          color: $dark_grey;
         }
+
+        .runtime {
+          color: $dark_grey;
+        }
+
+        .runtime:before {
+          content: "";
+          background-color: $dark_grey;
+          display: inline-block;
+          margin: 0 0.5rem 0.2rem;
+          font-size: 1rem;
+          line-height: .5rem;
+          padding: 1px;
+          border-radius: $circle;
+          vertical-align: middle;
+        }
+
+        .filmStatus {
+          color: $dark_grey;
+
+          .statusTitle {
+            font-weight: bold;
+            margin-right: 0.5rem;
+          }
+        }
+      }
+    }
+
+    .bookmark {
+      box-sizing: border-box;
+      border: 1px solid $very_dark_grey;
+      font-size: 0.75rem;
+      padding: 0.5rem;
+      color: $grey;
+      background: $dark_blue;
+      border-radius: 0.5rem;
+      min-width: 122px;
+      text-align: start;
+      max-height: 2.3125rem;
+      height: 2.3125rem;
+      display: flex;
+      align-items: center;
+      line-height: 0;
+
+      > span > span {
+        margin-right: 0.5rem;
+        font-size: 1rem;
       }
     }
   }
 
-  .interactivePart {
+  .promotionalPart {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -166,9 +195,21 @@
         line-height: 2.5rem;
         margin-bottom: 0.75rem;
       }
+
+      .bookmark {
+        font-size: 1rem;
+        padding: 0.75rem;
+        max-height: 2.5rem;
+        height: 2.5rem;
+        min-width: 161px;
+
+        > span > span {
+          font-size: 1.25rem;
+        }
+      }
     }
 
-    .interactivePart {
+    .promotionalPart {
       flex-wrap: nowrap;
 
       .trailer {
@@ -223,16 +264,28 @@
     gap: 1.5rem;
 
     .headerPart {
-      font-size: 1.5rem;
+      font-size: 1.25rem;
 
       .title {
         font-size: 3rem;
         line-height: 3.15rem;
         margin-bottom: 1.25rem;
       }
+
+      .bookmark {
+        font-size: 1.25rem;
+        padding: 1rem;
+        max-height: 3.5rem;
+        height: 3.5rem;
+        min-width: 202px;
+
+        > span > span {
+          font-size: 1.5rem;
+        }
+      }
     }
 
-    .interactivePart {
+    .promotionalPart {
       .poster {
         height: 25rem;
         border-radius: 1rem;
@@ -251,7 +304,7 @@
     }
 
     .description {
-      font-size: 1.5rem;
+      font-size: 1.35rem;
       padding-bottom: 1.5rem;
     }
 

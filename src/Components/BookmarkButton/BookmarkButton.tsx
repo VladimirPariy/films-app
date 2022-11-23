@@ -8,7 +8,8 @@ interface Props {
 
 const BookmarkButton: FC<Props> = (props) => {
 	return (
-		<button onClick={(e) => props.bookmarkClickHandler(e)} className={props.className}>
+		<button onClick={(e) => props.bookmarkClickHandler(e)}
+						className={props.className}>
 			{props.children}
 		</button>
 	);

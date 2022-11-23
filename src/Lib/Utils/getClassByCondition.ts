@@ -6,5 +6,5 @@ type getClassListType = (CSSModule: CSSModuleType, mainClass: string, extraClass
 
 
 export const getClassListByCondition: getClassListType = (CSSModule, mainClass, extraClass, condition) => {
-	return `${CSSModule[mainClass]} ${condition ? CSSModule[extraClass] : ''}`
+	return `${CSSModule[mainClass]} ${condition ? CSSModule[extraClass] : ''}`;
 };

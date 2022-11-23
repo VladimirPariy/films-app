@@ -17,7 +17,7 @@ export interface IFilm {
 
 export interface ITrailerData {
 	id: number;
-	results: ITrailer[]
+	results: ITrailer[];
 }
 
 
@@ -34,6 +34,28 @@ export interface ITrailer {
 	id: string;
 }
 
+export interface IProductionCompanies {
+	name: string;
+	id: number;
+	logo_path: string | null;
+	origin_country: string;
+}
+
+interface IProductionCountries {
+	iso_3166_1: string;
+	name: string;
+}
+
+export interface IGenres {
+	id: number;
+	name: string;
+}
+
+interface ISpokenLanguages {
+	iso_639_1: string;
+	name: string;
+}
+
 export interface IFilmDetails extends IFilm {
 	budget: number;
 	homepage: string | null;
@@ -42,24 +64,10 @@ export interface IFilmDetails extends IFilm {
 	runtime: number | null;
 	status: string;
 	tagline: string | null;
-	genres: {
-		id: number;
-		name: string
-	}[];
-	production_companies: {
-		name: string;
-		id: number;
-		logo_path: string | null;
-		origin_country: string;
-	}[];
-	production_countries: {
-		iso_3166_1: string;
-		name: string;
-	}[];
-	spoken_languages: {
-		iso_639_1: string;
-		name: string;
-	}[];
+	genres: IGenres[];
+	production_companies: IProductionCompanies[];
+	production_countries: IProductionCountries[];
+	spoken_languages: ISpokenLanguages[];
 	trailer: ITrailerData;
 }
 

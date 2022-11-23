@@ -1,10 +1,11 @@
-import {ActionCreatorWithoutPayload} from "@reduxjs/toolkit";
 import {useEffect} from "react";
+import {ActionCreatorWithoutPayload} from "@reduxjs/toolkit";
+
 import {useDispatchForCleanup} from "./useDispatchForCleanup";
 
 export const useCleanup = (cleanup: ActionCreatorWithoutPayload<string>) => {
-	const dispatchApp = useDispatchForCleanup()
+	const dispatchApp = useDispatchForCleanup();
 	useEffect(() => {
-		return () => dispatchApp(cleanup())
-	}, [])
+		return () => dispatchApp(cleanup());
+	}, []);
 }

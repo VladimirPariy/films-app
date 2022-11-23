@@ -5,6 +5,7 @@ import {clearState, loadFilms, selectAllFilms, selectCurrentPage, selectError, s
 
 import FilmCard from "../FilmCard/FilmCard";
 import FilmListContainer from "../FilmListContainer/FilmListContainer";
+
 import {useCleanup} from "../../Lib/Hooks/useCleanup";
 
 
@@ -14,14 +15,14 @@ const FilmsList: FC = () => {
 	const error = useAppSelector(selectError);
 	const currentPage = useAppSelector(selectCurrentPage);
 	
-	const dispatch = useAppDispatch()
+	const dispatch = useAppDispatch();
 	
 	useEffect(() => {
 		if (isLoading === 'loading') return;
-		dispatch(loadFilms({currentPage}))
-	}, [currentPage, dispatch])
+		dispatch(loadFilms({currentPage}));
+	}, [currentPage, dispatch]);
 	
-	useCleanup(clearState)
+	useCleanup(clearState);
 	return (
 		<>
 			{error && <div>ERROR</div>}
