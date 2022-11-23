@@ -44,10 +44,8 @@
       .arrowForOpeningSidebar {
         color: $dark_blue;
         position: absolute;
-        background: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        background: $white;
+        @include centered_block;
         padding: 5px;
         border-radius: $circle;
         border: 1px solid $dark_blue;

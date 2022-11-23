@@ -15,9 +15,7 @@
     right: 3%;
     border: none;
     background: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include centered_block;
 
     > svg {
       z-index: 1;

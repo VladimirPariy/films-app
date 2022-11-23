@@ -5,6 +5,7 @@ import styles from './FilmDetails.module.scss';
 import {IFilmDetails} from "../../Lib/Interfaces/FilmDetails.interface";
 import {getTime} from "../../Lib/Utils/getTime";
 import {getTrailer} from "../../Lib/Utils/getTrailer";
+import {UrlEnum} from "../../Lib/Enums/url.enum";
 
 
 interface Props extends IFilmDetails {
@@ -35,11 +36,11 @@ const FilmDetails: FC<Props> = (props) => {
 			<div className={styles.interactivePart}>
 				{props.poster_path &&
 					<img className={styles.poster}
-							 src={`https://image.tmdb.org/t/p/w500/${props.poster_path}`}
+							 src={`${UrlEnum.imgURL}${props.poster_path}`}
 							 alt="poster"/>
 				}
 				{trailer &&
-					<iframe src={`https://www.youtube.com/embed/${trailer.key}`}
+					<iframe src={`${UrlEnum.trailerURL}${trailer.key}`}
 									allowFullScreen
 									title="video"
 									className={styles.trailer}/>

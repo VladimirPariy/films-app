@@ -1,8 +1,11 @@
-import React, {FC} from "react";
+import React, {FC, MouseEvent} from "react";
 import {Link} from "react-router-dom";
+import {RiBookmarkLine} from "react-icons/ri";
 
 import styles from './FilmCard.module.scss'
-import {RiBookmarkLine} from "react-icons/ri";
+
+import BookmarkButton from "../BookmarkButton/BookmarkButton";
+import {UrlEnum} from "../../Lib/Enums/url.enum";
 
 //RiBookmarkFill
 interface Props {
@@ -15,13 +18,17 @@ interface Props {
 
 const FilmCard: FC<Props> = (props) => {
 	
+	const bookmarkClickHandler = (e: MouseEvent) => {
+		e.preventDefault()
+	}
+	
 	return (
 		<Link className={styles.filmCardContainer} to={`/${props.ID}`}>
-			<button className={styles.bookmarkContainer} onClick={(e) => e.preventDefault()}>
+			<BookmarkButton className={styles.bookmarkContainer} bookmarkClickHandler={bookmarkClickHandler}>
 				<RiBookmarkLine/>
-			</button>
+			</BookmarkButton>
 			<div className={styles.imgContainer}>
-				<img src={`https://image.tmdb.org/t/p/w500/${props.poster_path}`} alt="Film poster"/>
+				<img src={`${UrlEnum.imgURL}${props.poster_path}`} alt="Film poster"/>
 			</div>
 			<div className={styles.extraInfoWrapper}>
 				<div>{props.release_date ? props.release_date.slice(0, 4) : 'Release date not announced'}</div>
