@@ -5,12 +5,10 @@ import {RiBookmarkFill, RiBookmarkLine} from "react-icons/ri";
 import styles from './FilmCard.module.scss'
 
 import {UrlEnum} from "../../Lib/Enums/url.enum";
+import {useHasInWatchlist} from "../../Lib/Hooks/useHasInWatchlist";
 
 import WatchlistButton from "../WatchlistButton/WatchlistButton";
 import FilmInfo from "./FilmInfo";
-
-import {useAppSelector} from "../../Store/storeTypes";
-import {selectWatchlist} from "../../Store/Slices/WatchlistSlice";
 
 
 interface Props {
@@ -24,8 +22,7 @@ interface Props {
 
 const FilmCard: FC<Props> = (props) => {
 	
-	const watchlist = useAppSelector(selectWatchlist)
-	const hasInWatchlist = !!watchlist.find(film => film.id === props.ID)
+	const hasInWatchlist = useHasInWatchlist(props.ID)
 	
 	return (
 		<Link className={styles.filmCardContainer}

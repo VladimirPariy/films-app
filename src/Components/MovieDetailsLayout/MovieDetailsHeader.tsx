@@ -2,11 +2,14 @@ import React, {FC, MouseEvent} from "react";
 
 import styles from "./MovieDetails.module.scss";
 
+import {useAppDispatch} from "../../Store/storeTypes";
+import {addInWatchlist, removeFromWatchlist} from "../../Store/Slices/WatchlistSlice";
+
 import {getTime} from "../../Lib/Utils/getTime";
-import {useAppDispatch, useAppSelector} from "../../Store/storeTypes";
-import {addInWatchlist, removeFromWatchlist, selectWatchlist} from "../../Store/Slices/WatchlistSlice";
-import WatchlistButton from "../WatchlistButton/WatchlistButton";
 import ImdbAPI from "../../Lib/api/imdbAPI";
+import {useHasInWatchlist} from "../../Lib/Hooks/useHasInWatchlist";
+
+import WatchlistButton from "../WatchlistButton/WatchlistButton";
 
 interface Props {
 	title: string;
@@ -18,18 +21,13 @@ interface Props {
 }
 
 const MovieDetailsHeader: FC<Props> = (props) => {
+	const dispatch = useAppDispatch();
+	const hasInWatchlist = useHasInWatchlist(props.ID)
 	
 	const runTime = getTime(props.runtime);
 	
-	const watchlist = useAppSelector(selectWatchlist);
-	const dispatch = useAppDispatch();
-	
-	const hasInWatchlist = !!watchlist.find(film => film.id === props.ID)
-	
-	
 	const watchlistClickHandler = async (e: MouseEvent, ID: number) => {
 		e.preventDefault();
-		const hasInWatchlist = !!watchlist.find(film => film.id === ID)
 		if (props.imdb_id) {
 			const movie = await ImdbAPI.findFilm(props.imdb_id)
 			hasInWatchlist ? dispatch(removeFromWatchlist(ID)) : dispatch(addInWatchlist(movie[0]))

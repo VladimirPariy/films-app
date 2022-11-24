@@ -2,8 +2,8 @@ import axios from "axios";
 
 import {IFilmDetails, ITrailerData} from "../Interfaces/MovieDetails.interface";
 import {IFilmsListData} from "../Interfaces/FilmList.interface";
-import {UrlEnum} from "../Enums/url.enum";
 import {IFoundMovieResults} from "../Interfaces/FoundMovie.interface";
+import {UrlEnum} from "../Enums/url.enum";
 
 
 const API_KEY = process.env.REACT_APP_API_KEY || ''
@@ -21,9 +21,6 @@ class ImdbAPI {
 		const {data: {movie_results}} = await axios.get<IFoundMovieResults>(id, {
 			params: {api_key: API_KEY, external_source: 'imdb_id'},
 			baseURL: UrlEnum.findURL
-		})
-		movie_results.forEach(movie => {
-			delete movie.media_type
 		})
 		return movie_results
 	}

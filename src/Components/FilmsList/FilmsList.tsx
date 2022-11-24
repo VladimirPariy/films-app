@@ -1,12 +1,11 @@
 import React, {FC, MouseEvent, useEffect} from "react";
 
 import {useAppDispatch, useAppSelector} from "../../Store/storeTypes";
-import {clearState, loadFilms, selectAllFilms, selectCurrentPage, selectError, selectIsLoading} from "../../Store/Slices/FilmsSlice";
+import {loadFilms, selectAllFilms, selectCurrentPage, selectError, selectIsLoading} from "../../Store/Slices/FilmsSlice";
+import {addInWatchlist, removeFromWatchlist, selectWatchlist} from "../../Store/Slices/WatchlistSlice";
 
 import FilmCard from "../FilmCard/FilmCard";
 import FilmListContainer from "../FilmListContainer/FilmListContainer";
-import {addInWatchlist, removeFromWatchlist, selectWatchlist} from "../../Store/Slices/WatchlistSlice";
-import {useCleanup} from "../../Lib/Hooks/useCleanup";
 
 
 const FilmsList: FC = () => {
@@ -17,14 +16,15 @@ const FilmsList: FC = () => {
 	
 	const watchlist = useAppSelector(selectWatchlist);
 	
-	
 	const dispatch = useAppDispatch();
+	
+	const filmCountOnPage = 20;
 	
 	useEffect(() => {
 		if (isLoading === 'loading') return;
-		dispatch(loadFilms({currentPage}));
+		if (films.length === 0 || films.length !== currentPage * filmCountOnPage) dispatch(loadFilms({currentPage}));
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [currentPage, dispatch]);
-	
 	
 	const watchlistClickHandler = (e: MouseEvent, ID: number) => {
 		e.preventDefault();
@@ -32,7 +32,7 @@ const FilmsList: FC = () => {
 		hasInWatchlist ? dispatch(removeFromWatchlist(ID)) : dispatch(addInWatchlist(films.find(film => film.id === ID)))
 	};
 	
-	useCleanup(clearState);
+	// useCleanup(clearState);
 	return (
 		<>
 			{error && <div>ERROR</div>}

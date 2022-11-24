@@ -26,6 +26,7 @@ const MovieDetails: FC = () => {
 	useEffect(() => {
 		if (isLoading === 'loading') return;
 		if (id) dispatch(loadFilmDetails({id}));
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [id, dispatch]);
 	
 	useCleanup(clearState);
