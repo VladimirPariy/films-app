@@ -5,9 +5,8 @@ import {clearState, loadFilms, selectAllFilms, selectCurrentPage, selectError, s
 
 import FilmCard from "../FilmCard/FilmCard";
 import FilmListContainer from "../FilmListContainer/FilmListContainer";
-
+import {addInWatchlist, removeFromWatchlist, selectWatchlist} from "../../Store/Slices/WatchlistSlice";
 import {useCleanup} from "../../Lib/Hooks/useCleanup";
-import {addInBookmark, removeFromBookmark, selectWatchlist} from "../../Store/Slices/WatchlistSlice";
 
 
 const FilmsList: FC = () => {
@@ -16,7 +15,7 @@ const FilmsList: FC = () => {
 	const error = useAppSelector(selectError);
 	const currentPage = useAppSelector(selectCurrentPage);
 	
-	const watchlist = useAppSelector(selectWatchlist)
+	const watchlist = useAppSelector(selectWatchlist);
 	
 	
 	const dispatch = useAppDispatch();
@@ -27,10 +26,10 @@ const FilmsList: FC = () => {
 	}, [currentPage, dispatch]);
 	
 	
-	const bookmarkClickHandler = (e: MouseEvent, ID: number) => {
+	const watchlistClickHandler = (e: MouseEvent, ID: number) => {
 		e.preventDefault();
 		const hasInWatchlist = !!watchlist.find(film => film.id === ID)
-		hasInWatchlist ? dispatch(removeFromBookmark(ID)) : dispatch(addInBookmark(films.find(film => film.id === ID)))
+		hasInWatchlist ? dispatch(removeFromWatchlist(ID)) : dispatch(addInWatchlist(films.find(film => film.id === ID)))
 	};
 	
 	useCleanup(clearState);
@@ -46,7 +45,7 @@ const FilmsList: FC = () => {
 											poster_path={film.poster_path}
 											release_date={film.release_date}
 											vote_average={film.vote_average}
-											bookmarkClickHandler={bookmarkClickHandler}/>
+											clickHandler={watchlistClickHandler}/>
 					))}
 				</FilmListContainer>
 			}

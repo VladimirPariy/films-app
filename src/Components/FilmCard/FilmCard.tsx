@@ -4,10 +4,11 @@ import {RiBookmarkFill, RiBookmarkLine} from "react-icons/ri";
 
 import styles from './FilmCard.module.scss'
 
-import WatchlistButton from "../WatchlistButton/WatchlistButton";
 import {UrlEnum} from "../../Lib/Enums/url.enum";
 
+import WatchlistButton from "../WatchlistButton/WatchlistButton";
 import FilmInfo from "./FilmInfo";
+
 import {useAppSelector} from "../../Store/storeTypes";
 import {selectWatchlist} from "../../Store/Slices/WatchlistSlice";
 
@@ -18,7 +19,7 @@ interface Props {
 	release_date: string;
 	vote_average: number;
 	title: string;
-	bookmarkClickHandler: (e: MouseEvent, ID: number) => void;
+	clickHandler: (e: MouseEvent, ID: number) => void;
 }
 
 const FilmCard: FC<Props> = (props) => {
@@ -30,12 +31,9 @@ const FilmCard: FC<Props> = (props) => {
 		<Link className={styles.filmCardContainer}
 					to={`/${props.ID}`}>
 			<WatchlistButton className={styles.bookmarkContainer}
-											 bookmarkClickHandler={props.bookmarkClickHandler}
-											 ID={props.ID}
-			>
-				{hasInWatchlist ?
-					<RiBookmarkFill/>
-					: <RiBookmarkLine/>}
+											 clickHandler={props.clickHandler}
+											 ID={props.ID}>
+				{hasInWatchlist ? <RiBookmarkFill/> : <RiBookmarkLine/>}
 			</WatchlistButton>
 			<div className={styles.imgContainer}>
 				<img src={`${UrlEnum.imgURL}${props.poster_path}`}

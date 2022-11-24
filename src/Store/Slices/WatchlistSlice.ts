@@ -1,6 +1,7 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {IFilmFromList} from "../../Lib/Interfaces/FilmList.interface";
 import {RootState} from "../storeTypes";
+import {IFoundMovie} from "../../Lib/Interfaces/FoundMovie.interface";
 
 
 const initialState: IFilmFromList[] = []
@@ -9,10 +10,10 @@ const WatchlistSlice = createSlice({
 	name: '@@bookmark',
 	initialState,
 	reducers: {
-		addInBookmark: (state, {payload}: PayloadAction<IFilmFromList | undefined>) => {
+		addInWatchlist: (state, {payload}: PayloadAction<IFilmFromList | IFoundMovie | undefined>) => {
 			if (payload) state.push(payload)
 		},
-		removeFromBookmark: (state, {payload}: PayloadAction<number>) => {
+		removeFromWatchlist: (state, {payload}: PayloadAction<number>) => {
 			return state.filter(movie => movie.id !== payload)
 		}
 	}
@@ -20,7 +21,7 @@ const WatchlistSlice = createSlice({
 
 export const WatchlistReducer = WatchlistSlice.reducer;
 
-export const {addInBookmark, removeFromBookmark} = WatchlistSlice.actions;
+export const {addInWatchlist, removeFromWatchlist} = WatchlistSlice.actions;
 
 export const selectWatchlist = (state: RootState) => state.watchlist;
 

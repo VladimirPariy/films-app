@@ -30,7 +30,8 @@ const MovieDetails: FC = () => {
 	
 	useCleanup(clearState);
 	
-	const {title, release_date, runtime, status, poster_path, trailer, genres, overview, budget, homepage, production_companies} = filmDetails;
+	const {title, release_date, runtime, status, poster_path, trailer, genres, overview, budget, homepage, production_companies, id: ID, imdb_id} = filmDetails;
+	
 	
 	return (
 		<>
@@ -42,7 +43,8 @@ const MovieDetails: FC = () => {
 															release_date={release_date}
 															runtime={runtime}
 															status={status}
-															ID={id}/>
+															ID={ID}
+															imdb_id={imdb_id}/>
 					<PromotionalMovieDetails poster_path={poster_path}
 																	 trailer={trailer}/>
 					<MovieDescription genres={genres}

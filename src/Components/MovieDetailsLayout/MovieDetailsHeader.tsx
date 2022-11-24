@@ -1,26 +1,41 @@
-import React, {FC} from "react";
+import React, {FC, MouseEvent} from "react";
 
 import styles from "./MovieDetails.module.scss";
 
 import {getTime} from "../../Lib/Utils/getTime";
+import {useAppDispatch, useAppSelector} from "../../Store/storeTypes";
+import {addInWatchlist, removeFromWatchlist, selectWatchlist} from "../../Store/Slices/WatchlistSlice";
+import WatchlistButton from "../WatchlistButton/WatchlistButton";
+import ImdbAPI from "../../Lib/api/imdbAPI";
 
 interface Props {
 	title: string;
 	release_date: string;
 	runtime: number | null;
 	status: string;
-	ID: string | undefined;
+	ID: number;
+	imdb_id: string | null;
 }
 
 const MovieDetailsHeader: FC<Props> = (props) => {
 	
 	const runTime = getTime(props.runtime);
 	
-	// const [isFavourite, setIsFavourite] = useState(false)
-	// const bookmarkClickHandler = (e: MouseEvent) => {
-	// 	e.preventDefault();
-	// 	// setIsFavourite(prev => !prev)
-	// };
+	const watchlist = useAppSelector(selectWatchlist);
+	const dispatch = useAppDispatch();
+	
+	const hasInWatchlist = !!watchlist.find(film => film.id === props.ID)
+	
+	
+	const watchlistClickHandler = async (e: MouseEvent, ID: number) => {
+		e.preventDefault();
+		const hasInWatchlist = !!watchlist.find(film => film.id === ID)
+		if (props.imdb_id) {
+			const movie = await ImdbAPI.findFilm(props.imdb_id)
+			hasInWatchlist ? dispatch(removeFromWatchlist(ID)) : dispatch(addInWatchlist(movie[0]))
+		}
+	};
+	
 	return (
 		<div className={styles.headerPart}>
 			<div className={styles.title}>{props.title}</div>
@@ -35,10 +50,10 @@ const MovieDetailsHeader: FC<Props> = (props) => {
 						{props.status}
 					</div>
 				</div>
-				{/*<WatchlistButton className={styles.bookmark}*/}
-				{/*								 bookmarkClickHandler={bookmarkClickHandler}>*/}
-				{/*	{isFavourite ? <span><span>&#10003;</span>In Watchlist</span> : <span><span>+</span>Add to Watchlist</span>}*/}
-				{/*</WatchlistButton>*/}
+				<WatchlistButton className={styles.bookmark}
+												 clickHandler={watchlistClickHandler} ID={props.ID}>
+					{hasInWatchlist ? <span><span>&#10003;</span>In Watchlist</span> : <span><span>+</span>Add to Watchlist</span>}
+				</WatchlistButton>
 			</div>
 		</div>
 	);
