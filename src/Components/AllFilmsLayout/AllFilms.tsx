@@ -7,6 +7,7 @@ import {addInWatchlist, removeFromWatchlist, selectWatchlist} from "../../Store/
 import FilmCard from "../UI/FilmCard/FilmCard";
 import FilmsGridContainer from "../UI/FilmsGridContainer/FilmsGridContainer";
 import Title from "../UI/TitleContainer/Title";
+import Loader from "../UI/Loader/Loader";
 
 
 const AllFilms: FC = () => {
@@ -53,7 +54,7 @@ const AllFilms: FC = () => {
 					))}
 				</FilmsGridContainer>
 			}
-			{isLoading === 'loading' && <div>Loading...</div>}
+			{isLoading === 'loading' && <Loader/>}
 		</>
 	);
 };

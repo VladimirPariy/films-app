@@ -1,17 +1,17 @@
 import React, {FC, useEffect} from "react";
 import {useParams} from "react-router";
 
-import styles from './MovieDetails.module.scss';
+import styles from './MovieDetails.module.scss'
 
 import {useAppDispatch, useAppSelector} from "../../Store/storeTypes";
 import {clearState, loadMovieDetails, selectDetails, selectDetailsError, selectIsLoadingDetails} from "../../Store/Slices/MovieDetailsSlice";
 
 import {useCleanup} from "../../Lib/Hooks/useCleanup";
-
+import Loader from "../UI/Loader/Loader";
 import MovieDetailsHeader from "./MovieDetailsHeader";
 import PromotionalMovieDetails from "./PromotionalMovieDetails";
-import ExtraMovieDetails from "./ExtraMovieDetails";
 import MovieDescription from "./MovieDescription";
+import ExtraMovieDetails from "./ExtraMovieDetails";
 
 const MovieDetails: FC = () => {
 	
@@ -36,7 +36,7 @@ const MovieDetails: FC = () => {
 	
 	return (
 		<>
-			{isLoading === 'loading' && <div>Loading...</div>}
+			{isLoading === 'loading' && <div className={styles.loaderWrapper}><Loader/></div>}
 			{error && <div>ERROR</div>}
 			{Object.keys(movieDetails).length !== 0 &&
 				<div className={styles.wrapper}>
