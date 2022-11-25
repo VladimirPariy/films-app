@@ -1,0 +1,20 @@
+
+.filmsTitle {
+  font-size: 1.5rem;
+  margin: 1rem 1rem 0.5rem;
+  text-align: center;
+}
+
+@media screen and (min-width: 769px) {
+  .filmsTitle {
+    font-size: 2rem;
+    margin: 1.5rem 1.5rem 1rem;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .filmsTitle {
+    font-size: 2.5rem;
+    margin: 2rem 2rem 1.5rem;
+  }
+}

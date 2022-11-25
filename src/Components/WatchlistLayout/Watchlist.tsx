@@ -6,6 +6,9 @@ import FilmCard from "../UI/FilmCard/FilmCard";
 import {useAppDispatch, useAppSelector} from "../../Store/storeTypes";
 import {removeFromWatchlist, selectWatchlist} from "../../Store/Slices/WatchlistSlice";
 
+import EmptyList from "../UI/EmptyList/EmptyList";
+import Title from "../UI/TitleContainer/Title";
+
 
 const Watchlist: FC = () => {
 	const watchlist = useAppSelector(selectWatchlist)
@@ -18,7 +21,11 @@ const Watchlist: FC = () => {
 	
 	return (
 		<>
-			<FilmsGridContainer title={'Watchlist'}>
+			<Title>
+				Watchlist
+			</Title>
+			{watchlist.length === 0 && <EmptyList/>}
+			<FilmsGridContainer>
 				{watchlist.map(film => (
 					<FilmCard key={film.id}
 										ID={film.id}

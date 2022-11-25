@@ -1,13 +1,17 @@
 import {configureStore} from "@reduxjs/toolkit";
-import {filmsReducer} from "./Slices/FilmsSlice";
-import {movieDetailsReducer} from "./Slices/MovieDetailsSlice";
-import {WatchlistReducer} from "./Slices/WatchlistSlice";
+import {FLUSH, PAUSE, PERSIST, persistStore, PURGE, REGISTER, REHYDRATE,} from 'redux-persist'
+import {persistedReducer} from "./reduxPersistor";
 
 export const store = configureStore({
-	reducer: {
-		films: filmsReducer,
-		movieDetails: movieDetailsReducer,
-		watchlist: WatchlistReducer
-	},
-	devTools: true
+	reducer: persistedReducer,
+	devTools: true,
+	middleware: (getDefaultMiddleware) =>
+		getDefaultMiddleware({
+			serializableCheck: {
+				ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+			},
+		}),
 })
+
+
+export let persistor = persistStore(store)

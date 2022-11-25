@@ -6,6 +6,7 @@ import {addInWatchlist, removeFromWatchlist, selectWatchlist} from "../../Store/
 
 import FilmCard from "../UI/FilmCard/FilmCard";
 import FilmsGridContainer from "../UI/FilmsGridContainer/FilmsGridContainer";
+import Title from "../UI/TitleContainer/Title";
 
 
 const AllFilms: FC = () => {
@@ -36,8 +37,11 @@ const AllFilms: FC = () => {
 	return (
 		<>
 			{error && <div>ERROR</div>}
+			<Title>
+				Most popular
+			</Title>
 			{films.length > 0 &&
-				<FilmsGridContainer title={'Most popular'}>
+				<FilmsGridContainer>
 					{films.map(movie => (
 						<FilmCard key={movie.id}
 											ID={movie.id}
