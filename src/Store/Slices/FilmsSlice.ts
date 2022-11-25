@@ -2,8 +2,8 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
 import {LoadingStatusType, RootState} from "../storeTypes";
 
-import {IFilmFromList, IFilmsListData} from "../../Lib/Interfaces/FilmList.interface";
-import {filmsCategories} from "../../Lib/Enums/filmCategories.enum";
+import {IFilmFromList, IFilmsListData} from "../../Lib/Interfaces/FilmsList.interface";
+import {filmsCategories} from "../../Lib/Enums/filmsCategories.enum";
 import imdbAPI from "../../Lib/api/imdbAPI";
 
 
@@ -14,11 +14,11 @@ export const loadFilms = createAsyncThunk<IFilmsListData, { currentPage: number 
 	},
 	{
 		condition: (_, {getState}) => {
-			const {status} = getState().films
-			return status !== 'loading'
+			const {status} = getState().films;
+			return status !== 'loading';
 		}
 	}
-)
+);
 
 
 interface IInitialState {
@@ -41,13 +41,6 @@ const FilmsSlice = createSlice({
 	name: "@@films",
 	initialState,
 	reducers: {
-		clearState: (state) => {
-			state.error = null;
-			state.status = "idle";
-			state.entities = [];
-			state.currentPage = 1;
-			state.totalPage = 0;
-		},
 		setCurrentPage: (state) => {
 			state.currentPage += 1;
 		},
@@ -75,7 +68,7 @@ const FilmsSlice = createSlice({
 
 export const filmsReducer = FilmsSlice.reducer;
 
-export const {clearState, setCurrentPage} = FilmsSlice.actions;
+export const {setCurrentPage} = FilmsSlice.actions;
 
 export const selectAllFilms = (state: RootState) => state.films.entities;
 export const selectIsLoading = (state: RootState) => state.films.status;

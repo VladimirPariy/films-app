@@ -1,13 +1,13 @@
 import React, {FC, ReactNode} from "react";
 
-import styles from './FilmListContainer.module.scss';
+import styles from './FilmsListContainer.module.scss';
 
 interface Props {
 	title: string;
 	children: ReactNode;
 }
 
-const FilmListContainer: FC<Props> = (props) => {
+const FilmsGridContainer: FC<Props> = (props) => {
 	return (
 		<>
 			<div className={styles.filmsTitle}>
@@ -20,4 +20,4 @@ const FilmListContainer: FC<Props> = (props) => {
 	);
 };
 
-export default FilmListContainer;
+export default FilmsGridContainer;

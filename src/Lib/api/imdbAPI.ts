@@ -1,7 +1,7 @@
 import axios from "axios";
 
-import {IFilmDetails, ITrailerData} from "../Interfaces/MovieDetails.interface";
-import {IFilmsListData} from "../Interfaces/FilmList.interface";
+import {IMovieDetails, ITrailerData} from "../Interfaces/MovieDetails.interface";
+import {IFilmsListData} from "../Interfaces/FilmsList.interface";
 import {IFoundMovieResults} from "../Interfaces/FoundMovie.interface";
 import {UrlEnum} from "../Enums/url.enum";
 
@@ -17,7 +17,7 @@ class ImdbAPI {
 		return data;
 	}
 	
-	async findFilm(id: string) {
+	async findMovie(id: string) {
 		const {data: {movie_results}} = await axios.get<IFoundMovieResults>(id, {
 			params: {api_key: API_KEY, external_source: 'imdb_id'},
 			baseURL: UrlEnum.findURL
@@ -25,8 +25,8 @@ class ImdbAPI {
 		return movie_results
 	}
 	
-	async getFilmDetails(id: string): Promise<IFilmDetails> {
-		const {data} = await axios.get<IFilmDetails>(id, {
+	async getMovieDetails(id: string): Promise<IMovieDetails> {
+		const {data} = await axios.get<IMovieDetails>(id, {
 			params: {api_key: API_KEY},
 			baseURL: UrlEnum.BASE_MOVIE_URL,
 		});

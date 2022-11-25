@@ -12,9 +12,9 @@ import MovieDetailsPage from "../../Pages/MovieDatailPage/MovieDetailsPage";
 const AppRouter: FC = () => {
 	return (
 		<Routes>
-			<Route path={routesURL.home} element={<FilmsPage/>}/>
-			<Route path={routesURL.filmByID} element={<MovieDetailsPage/>}/>
-			<Route path={routesURL.bookmark} element={<WatchlistPage/>}/>
+			<Route path={routesURL.allFilms} element={<FilmsPage/>}/>
+			<Route path={routesURL.movieDetails} element={<MovieDetailsPage/>}/>
+			<Route path={routesURL.watchlist} element={<WatchlistPage/>}/>
 			<Route path={routesURL.notFound} element={<NotFoundPage/>}/>
 		</Routes>
 	

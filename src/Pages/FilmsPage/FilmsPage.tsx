@@ -1,12 +1,12 @@
 import React, {FC} from "react";
 
-import FilmsList from "../../Components/FilmsList/FilmsList";
+import AllFilms from "../../Components/AllFilmsLayout/AllFilms";
 import Observer from "../../Components/Observer/Observer";
 
 const FilmsPage: FC = () => {
 	return (
 		<>
-			<FilmsList/>
+			<AllFilms/>
 			<Observer/>
 		</>
 	);

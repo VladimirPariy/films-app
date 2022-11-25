@@ -15,9 +15,9 @@ const ExtraMovieDetails: FC<Props> = (props) => {
 	const budgetSum = props.budget.toString()
 		.split('')
 		.reverse()
-		.map((item, index) => {
-			if (index === 0) return item;
-			return (index % 3 === 0) ? item = `${item},` : item;
+		.map((number, index) => {
+			if (index === 0) return number;
+			return (index % 3 === 0) ? number = `${number},` : number;
 		})
 		.reverse()
 		.join('');

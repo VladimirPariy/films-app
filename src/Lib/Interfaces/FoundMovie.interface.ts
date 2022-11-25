@@ -1,4 +1,4 @@
-import {IFilmFromList} from "./FilmList.interface";
+import {IFilmFromList} from "./FilmsList.interface";
 
 export interface IFoundMovie extends IFilmFromList {
 	media_type: string

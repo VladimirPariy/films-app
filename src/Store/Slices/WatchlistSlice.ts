@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {IFilmFromList} from "../../Lib/Interfaces/FilmList.interface";
+import {IFilmFromList} from "../../Lib/Interfaces/FilmsList.interface";
 import {RootState} from "../storeTypes";
 import {IFoundMovie} from "../../Lib/Interfaces/FoundMovie.interface";
 

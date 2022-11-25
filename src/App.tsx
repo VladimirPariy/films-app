@@ -9,7 +9,7 @@ const App: FC = () => {
 	const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false);
 	
 	return (
-		<main className={styles.wrapper} onClick={() => setIsOpenSidebar(false)}>
+		<main className={styles.wrapper} onClick={() => setIsOpenSidebar(false)} onTouchStart={() => setIsOpenSidebar(false)}>
 			<Sidebar isOpenSidebar={isOpenSidebar} setIsOpenSidebar={setIsOpenSidebar}/>
 			<Content/>
 		</main>

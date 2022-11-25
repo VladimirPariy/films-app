@@ -4,7 +4,7 @@ import {useParams} from "react-router";
 import styles from './MovieDetails.module.scss';
 
 import {useAppDispatch, useAppSelector} from "../../Store/storeTypes";
-import {clearState, loadFilmDetails, selectDetails, selectDetailsError, selectIsLoadingDetails} from "../../Store/Slices/MovieDetailsSlice";
+import {clearState, loadMovieDetails, selectDetails, selectDetailsError, selectIsLoadingDetails} from "../../Store/Slices/MovieDetailsSlice";
 
 import {useCleanup} from "../../Lib/Hooks/useCleanup";
 
@@ -18,27 +18,27 @@ const MovieDetails: FC = () => {
 	const {id} = useParams();
 	
 	const isLoading = useAppSelector(selectIsLoadingDetails);
-	const filmDetails = useAppSelector(selectDetails);
+	const movieDetails = useAppSelector(selectDetails);
 	const error = useAppSelector(selectDetailsError);
 	
 	const dispatch = useAppDispatch();
 	
 	useEffect(() => {
 		if (isLoading === 'loading') return;
-		if (id) dispatch(loadFilmDetails({id}));
+		if (id) dispatch(loadMovieDetails({id}));
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [id, dispatch]);
 	
 	useCleanup(clearState);
 	
-	const {title, release_date, runtime, status, poster_path, trailer, genres, overview, budget, homepage, production_companies, id: ID, imdb_id} = filmDetails;
+	const {title, release_date, runtime, status, poster_path, trailer, genres, overview, budget, homepage, production_companies, id: ID, imdb_id} = movieDetails;
 	
 	
 	return (
 		<>
 			{isLoading === 'loading' && <div>Loading...</div>}
 			{error && <div>ERROR</div>}
-			{Object.keys(filmDetails).length !== 0 &&
+			{Object.keys(movieDetails).length !== 0 &&
 				<div className={styles.wrapper}>
 					<MovieDetailsHeader title={title}
 															release_date={release_date}

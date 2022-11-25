@@ -7,7 +7,7 @@ interface Props {
 	ID: number;
 }
 
-const WatchlistButton: FC<Props> = (props) => {
+const Button: FC<Props> = (props) => {
 	return (
 		<button onClick={(e) => props.clickHandler(e, props.ID)}
 						className={props.className}>
@@ -16,4 +16,4 @@ const WatchlistButton: FC<Props> = (props) => {
 	);
 };
 
-export default WatchlistButton;
+export default Button;

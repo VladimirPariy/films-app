@@ -1,4 +1,4 @@
-import {IFilm} from "./MovieDetails.interface";
+import {IMovie} from "./MovieDetails.interface";
 
 export interface IFilmsListData {
 	page: number;
@@ -7,6 +7,6 @@ export interface IFilmsListData {
 	total_results: number;
 }
 
-export interface IFilmFromList extends IFilm {
+export interface IFilmFromList extends IMovie {
 	genre_ids: number[];
 }

@@ -1,4 +1,4 @@
-export interface IFilm {
+export interface IMovie {
 	poster_path: string | null;
 	adult: boolean;
 	overview: string | null;
@@ -56,7 +56,7 @@ interface ISpokenLanguages {
 	name: string;
 }
 
-export interface IFilmDetails extends IFilm {
+export interface IMovieDetails extends IMovie {
 	budget: number;
 	homepage: string | null;
 	imdb_id: string | null;

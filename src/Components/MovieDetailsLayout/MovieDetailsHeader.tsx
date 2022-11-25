@@ -9,7 +9,7 @@ import {getTime} from "../../Lib/Utils/getTime";
 import ImdbAPI from "../../Lib/api/imdbAPI";
 import {useHasInWatchlist} from "../../Lib/Hooks/useHasInWatchlist";
 
-import WatchlistButton from "../WatchlistButton/WatchlistButton";
+import Button from "../UI/Button/Button";
 
 interface Props {
 	title: string;
@@ -29,7 +29,7 @@ const MovieDetailsHeader: FC<Props> = (props) => {
 	const watchlistClickHandler = async (e: MouseEvent, ID: number) => {
 		e.preventDefault();
 		if (props.imdb_id) {
-			const movie = await ImdbAPI.findFilm(props.imdb_id)
+			const movie = await ImdbAPI.findMovie(props.imdb_id)
 			hasInWatchlist ? dispatch(removeFromWatchlist(ID)) : dispatch(addInWatchlist(movie[0]))
 		}
 	};
@@ -48,10 +48,18 @@ const MovieDetailsHeader: FC<Props> = (props) => {
 						{props.status}
 					</div>
 				</div>
-				<WatchlistButton className={styles.bookmark}
-												 clickHandler={watchlistClickHandler} ID={props.ID}>
-					{hasInWatchlist ? <span><span>&#10003;</span>In Watchlist</span> : <span><span>+</span>Add to Watchlist</span>}
-				</WatchlistButton>
+				<Button className={styles.bookmark}
+								clickHandler={watchlistClickHandler} ID={props.ID}>
+					{hasInWatchlist ?
+						<span>
+							<span>&#10003;</span>
+							In Watchlist
+						</span> :
+						<span>
+							<span>+</span>
+							Add to Watchlist
+						</span>}
+				</Button>
 			</div>
 		</div>
 	);
