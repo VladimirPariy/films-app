@@ -1,15 +1,21 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
-import {LoadingStatusType, RootState} from "../storeTypes";
+import {ErrorPayload, LoadingStatusType, RootState} from "../storeTypes";
 
 import {IMovieDetails} from "../../Lib/Interfaces/MovieDetails.interface";
 import imdbAPI from "../../Lib/api/imdbAPI";
+import {AxiosError} from "axios";
 
 
-export const loadMovieDetails = createAsyncThunk<IMovieDetails, { id: string }>(
+export const loadMovieDetails = createAsyncThunk<IMovieDetails | undefined, { id: string }, { rejectValue: ErrorPayload }>(
 	'@@details/loadingDetails',
-	async ({id}) => {
-		return await imdbAPI.getMovieDetails(id,);
+	async ({id}, thunkAPI) => {
+		try {
+			const {data} = await imdbAPI.getMovieDetails(id);
+			return data
+		} catch (e) {
+			if (e instanceof AxiosError) return thunkAPI.rejectWithValue(JSON.parse(e.request.response))
+		}
 	})
 
 interface IInitialState {
@@ -44,10 +50,10 @@ const MovieDetailsSlice = createSlice({
 			.addCase(loadMovieDetails.fulfilled, (state, action) => {
 				state.error = null;
 				state.status = "received";
-				state.entities = action.payload;
+				if (action.payload) state.entities = action.payload;
 			})
 			.addCase(loadMovieDetails.rejected, (state, action) => {
-				state.error = action.error.message || 'We got some error';
+				state.error = action.payload?.status_message || action.error.message || 'We got some error';
 				state.status = "rejected";
 			})
 	}

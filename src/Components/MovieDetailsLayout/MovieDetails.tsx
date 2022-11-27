@@ -13,6 +13,8 @@ import MovieDetailsHeader from "./MovieDetailsHeader";
 import PromotionalMovieDetails from "./PromotionalMovieDetails";
 import MovieDescription from "./MovieDescription";
 import ExtraMovieDetails from "./ExtraMovieDetails";
+import Error from "../UI/Error/Error";
+import Container from "../UI/Container/Container";
 
 const MovieDetails: FC = () => {
 	
@@ -33,11 +35,19 @@ const MovieDetails: FC = () => {
 	useCleanup(clearState);
 	
 	const {title, release_date, runtime, status, poster_path, videos, genres, overview, budget, homepage, production_companies, id: ID, imdb_id} = movieDetails;
-	
+	console.log(!!movieDetails)
 	return (
 		<>
-			{isLoading === 'loading' && <div className={styles.loaderWrapper}><Loader/></div>}
-			{error && <div>ERROR</div>}
+			{isLoading === 'loading' &&
+				<Container condition={Object.keys(movieDetails).length === 0}>
+					<Loader/>
+				</Container>
+			}
+			{error &&
+				<Container condition={Object.keys(movieDetails).length === 0}>
+					<Error error={error}/>
+				</Container>
+			}
 			{Object.keys(movieDetails).length !== 0 &&
 				<div className={styles.wrapper}>
 					<MovieDetailsHeader title={title}

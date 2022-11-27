@@ -1,16 +1,22 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
-import {LoadingStatusType, RootState} from "../storeTypes";
+import {ErrorPayload, LoadingStatusType, RootState} from "../storeTypes";
 
 import {IFilmFromList, IFilmsListData} from "../../Lib/Interfaces/FilmsList.interface";
 import {filmsCategories} from "../../Lib/Enums/filmsCategories.enum";
 import imdbAPI from "../../Lib/api/imdbAPI";
+import {AxiosError} from "axios";
 
 
-export const loadFilms = createAsyncThunk<IFilmsListData, { currentPage: number }, { state: RootState }>(
+export const loadFilms = createAsyncThunk<IFilmsListData | undefined, { currentPage: number }, { state: RootState, rejectValue: ErrorPayload }>(
 	'@@films/loadingFilms',
-	async ({currentPage}) => {
-		return await imdbAPI.getFilmsList(filmsCategories.popular, currentPage);
+	async ({currentPage}, thunkAPI) => {
+		try {
+			return await imdbAPI.getFilmsList(filmsCategories.popular, currentPage);
+			
+		} catch (e) {
+			if (e instanceof AxiosError) return thunkAPI.rejectWithValue(JSON.parse(e.request.response))
+		}
 	},
 	{
 		condition: (_, {getState}) => {
@@ -54,12 +60,14 @@ const FilmsSlice = createSlice({
 			.addCase(loadFilms.fulfilled, (state, action) => {
 				state.error = null;
 				state.status = "received";
-				state.entities = state.entities.concat(action.payload.results);
-				state.currentPage = action.payload.page;
-				state.totalPage = action.payload.total_pages;
+				if (action.payload) {
+					state.entities = state.entities.concat(action.payload.results);
+					state.currentPage = action.payload.page;
+					state.totalPage = action.payload.total_pages;
+				}
 			})
 			.addCase(loadFilms.rejected, (state, action) => {
-				state.error = action.error.message || 'We got some error';
+				state.error = action.payload?.status_message || action.error.message || 'We got some error';
 				state.status = "rejected";
 			})
 	}

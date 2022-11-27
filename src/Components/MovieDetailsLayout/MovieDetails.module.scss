@@ -1,13 +1,6 @@
 @use "../../Scss/index" as *;
 
 
-.loaderWrapper {
-  display: flex;
-  min-height: 80vh;
-  justify-content: center;
-  margin: auto;
-}
-
 .wrapper {
   display: flex;
   gap: 1rem;

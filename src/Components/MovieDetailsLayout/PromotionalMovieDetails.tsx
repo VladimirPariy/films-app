@@ -13,7 +13,6 @@ interface Props {
 
 const PromotionalMovieDetails: FC<Props> = (props) => {
 	const trailer = getTrailer(props.trailer.results);
-	console.log(trailer)
 	return (
 		<div className={styles.promotionalPart}>
 			{props.poster_path &&

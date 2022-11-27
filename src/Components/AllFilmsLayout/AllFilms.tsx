@@ -4,10 +4,12 @@ import {useAppDispatch, useAppSelector} from "../../Store/storeTypes";
 import {loadFilms, selectAllFilms, selectCurrentPage, selectError, selectIsLoading} from "../../Store/Slices/FilmsSlice";
 import {addInWatchlist, removeFromWatchlist, selectWatchlist} from "../../Store/Slices/WatchlistSlice";
 
-import FilmCard from "../UI/FilmCard/FilmCard";
-import FilmsGridContainer from "../UI/FilmsGridContainer/FilmsGridContainer";
-import Title from "../UI/TitleContainer/Title";
 import Loader from "../UI/Loader/Loader";
+import Container from "../UI/Container/Container";
+import FilmsGridContainer from "../UI/FilmsGridContainer/FilmsGridContainer";
+import FilmCard from "../UI/FilmCard/FilmCard";
+import Title from "../UI/TitleContainer/Title";
+import Error from "../UI/Error/Error";
 
 
 const AllFilms: FC = () => {
@@ -26,7 +28,7 @@ const AllFilms: FC = () => {
 		if (films.length === 0 || films.length !== currentPage * countFilmsPerPage) {
 			dispatch(loadFilms({currentPage}));
 		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
+		//eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [currentPage, dispatch]);
 	
 	const watchlistClickHandler = (e: MouseEvent, ID: number) => {
@@ -37,24 +39,34 @@ const AllFilms: FC = () => {
 	
 	return (
 		<>
-			{error && <div>ERROR</div>}
-			<Title>
-				Most popular
-			</Title>
-			{films.length > 0 &&
-				<FilmsGridContainer>
-					{films.map(movie => (
-						<FilmCard key={movie.id}
-											ID={movie.id}
-											title={movie.title}
-											poster_path={movie.poster_path}
-											release_date={movie.release_date}
-											vote_average={movie.vote_average}
-											clickHandler={watchlistClickHandler}/>
-					))}
-				</FilmsGridContainer>
+			{error &&
+				<Container condition={films.length === 0}>
+					<Error error={error}/>
+				</Container>
 			}
-			{isLoading === 'loading' && <Loader/>}
+			{films.length > 0 && (
+				<>
+					<Title>
+						Most popular
+					</Title>
+					<FilmsGridContainer>
+						{films.map(movie => (
+							<FilmCard key={movie.id}
+												ID={movie.id}
+												title={movie.title}
+												poster_path={movie.poster_path}
+												release_date={movie.release_date}
+												vote_average={movie.vote_average}
+												clickHandler={watchlistClickHandler}/>
+						))}
+					</FilmsGridContainer>
+				</>
+			)}
+			{isLoading === 'loading' &&
+				<Container condition={films.length === 0}>
+					<Loader/>
+				</Container>
+			}
 		</>
 	);
 };
