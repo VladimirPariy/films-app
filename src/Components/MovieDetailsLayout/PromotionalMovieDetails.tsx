@@ -3,16 +3,17 @@ import React, {FC} from "react";
 import styles from "./MovieDetails.module.scss";
 
 import {UrlEnum} from "../../Lib/Enums/url.enum";
+import {ITrailer} from "../../Lib/Interfaces/MovieDetails.interface";
 import {getTrailer} from "../../Lib/Utils/getTrailer";
-import {ITrailerData} from "../../Lib/Interfaces/MovieDetails.interface";
 
 interface Props {
 	poster_path: string | null;
-	trailer: ITrailerData;
+	trailer: { results: ITrailer[]; }
 }
 
 const PromotionalMovieDetails: FC<Props> = (props) => {
 	const trailer = getTrailer(props.trailer.results);
+	console.log(trailer)
 	return (
 		<div className={styles.promotionalPart}>
 			{props.poster_path &&
@@ -22,9 +23,13 @@ const PromotionalMovieDetails: FC<Props> = (props) => {
 			}
 			{trailer &&
 				<iframe src={`${UrlEnum.trailerURL}${trailer.key}`}
+								title="YouTube video player"
+								frameBorder="0"
+								security='SameSite=Strict'
+								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 								allowFullScreen
-								title="video"
 								className={styles.trailer}/>
+				
 			}
 		</div>
 	);

@@ -7,6 +7,7 @@ import {useAppDispatch, useAppSelector} from "../../Store/storeTypes";
 import {clearState, loadMovieDetails, selectDetails, selectDetailsError, selectIsLoadingDetails} from "../../Store/Slices/MovieDetailsSlice";
 
 import {useCleanup} from "../../Lib/Hooks/useCleanup";
+
 import Loader from "../UI/Loader/Loader";
 import MovieDetailsHeader from "./MovieDetailsHeader";
 import PromotionalMovieDetails from "./PromotionalMovieDetails";
@@ -31,8 +32,7 @@ const MovieDetails: FC = () => {
 	
 	useCleanup(clearState);
 	
-	const {title, release_date, runtime, status, poster_path, trailer, genres, overview, budget, homepage, production_companies, id: ID, imdb_id} = movieDetails;
-	
+	const {title, release_date, runtime, status, poster_path, videos, genres, overview, budget, homepage, production_companies, id: ID, imdb_id} = movieDetails;
 	
 	return (
 		<>
@@ -47,7 +47,7 @@ const MovieDetails: FC = () => {
 															ID={ID}
 															imdb_id={imdb_id}/>
 					<PromotionalMovieDetails poster_path={poster_path}
-																	 trailer={trailer}/>
+																	 trailer={videos}/>
 					<MovieDescription genres={genres}
 														overview={overview}/>
 					<ExtraMovieDetails budget={budget}

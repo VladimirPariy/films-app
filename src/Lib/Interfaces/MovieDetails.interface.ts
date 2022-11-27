@@ -15,23 +15,17 @@ export interface IMovie {
 }
 
 
-export interface ITrailerData {
-	id: number;
-	results: ITrailer[];
-}
-
-
 export interface ITrailer {
+	id: string;
 	iso_639_1: string;
 	iso_3166_1: string;
-	name: string;
 	key: string;
+	name: string;
+	official: boolean;
+	published_at: string;
 	site: string;
 	size: number;
 	type: string;
-	official: boolean;
-	published_at: string;
-	id: string;
 }
 
 export interface IProductionCompanies {
@@ -68,7 +62,9 @@ export interface IMovieDetails extends IMovie {
 	production_companies: IProductionCompanies[];
 	production_countries: IProductionCountries[];
 	spoken_languages: ISpokenLanguages[];
-	trailer: ITrailerData;
+	videos: {
+		results: ITrailer[]
+	}
 }
 
 
