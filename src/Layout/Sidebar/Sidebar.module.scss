@@ -31,11 +31,10 @@
       }
     }
 
-    .logoDuringSidebarToggling {
-      svg {
-        transform: rotate(360deg);
-        transition-duration: $transition_dur;
-      }
+    .logoDuringSidebarToggling > svg {
+      transform: rotate(360deg);
+      transition-duration: $transition_dur;
+
     }
 
     .toggleContainer {
@@ -87,8 +86,19 @@
 
           > a {
             display: flex;
+            align-items: center;
             color: $light_grey;
             text-decoration: none;
+            position: relative;
+
+            .watchlistCounter {
+              position: absolute;
+              right: 25%;
+              padding: 2px 8px;
+              background: rgb(255, 166, 22);
+              border-radius: $circle;
+              font-size: 14px;
+            }
 
             > svg {
               margin-top: 0;
@@ -135,7 +145,7 @@
 
     .sidebarContainer {
       inset: 20px;
-      width: 150px;
+      width: 200px;
       border-radius: 15px;
       min-height: 280px;
       height: auto;
@@ -168,16 +178,30 @@
           > li {
             margin: 0;
             width: auto;
+            font-size: 22px;
+
+            > a > .watchlistCounter {
+              right: -8px;
+              font-size: 16px;
+            }
           }
         }
       }
     }
   }
+
   .sidebarWrapperClosed {
     width: 60px;
 
     .sidebarContainerClosed {
       width: 50px;
+
+      nav > .sidebarMenu > li > a > .watchlistCounter {
+        right: -6px;
+        top: -4px;
+        font-size: 10px;
+        padding: 1px 5px;
+      }
     }
   }
 }
