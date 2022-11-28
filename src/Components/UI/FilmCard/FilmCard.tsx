@@ -1,5 +1,5 @@
 import React, {FC, MouseEvent} from "react";
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import {RiBookmarkFill, RiBookmarkLine} from "react-icons/ri";
 
 import styles from './FilmCard.module.scss'
@@ -23,10 +23,11 @@ interface Props {
 const FilmCard: FC<Props> = (props) => {
 	
 	const hasInWatchlist = useHasInWatchlist(props.ID)
+	const location = useLocation()
 	
 	return (
 		<Link className={styles.filmCardContainer}
-					to={`/${props.ID}`}>
+					to={location.pathname === '/watchlist' ? `${props.ID}` : `movie/${props.ID}`}>
 			<Button className={styles.bookmarkContainer}
 							clickHandler={props.clickHandler}
 							ID={props.ID}>

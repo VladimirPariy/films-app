@@ -35,7 +35,6 @@ const MovieDetails: FC = () => {
 	useCleanup(clearState);
 	
 	const {title, release_date, runtime, status, poster_path, videos, genres, overview, budget, homepage, production_companies, id: ID, imdb_id} = movieDetails;
-	console.log(!!movieDetails)
 	return (
 		<>
 			{isLoading === 'loading' &&

@@ -10,5 +10,6 @@ export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 export type LoadingStatusType = "idle" | "loading" | "received" | "rejected";
 
 export interface ErrorPayload {
-	status_message: string
+	status_message: string;
+	status: number
 }

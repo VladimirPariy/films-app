@@ -13,9 +13,11 @@ export const loadFilms = createAsyncThunk<IFilmsListData | undefined, { currentP
 	async ({currentPage}, thunkAPI) => {
 		try {
 			return await imdbAPI.getFilmsList(filmsCategories.popular, currentPage);
-			
 		} catch (e) {
-			if (e instanceof AxiosError) return thunkAPI.rejectWithValue(JSON.parse(e.request.response))
+			if (e instanceof AxiosError) return thunkAPI.rejectWithValue({
+				status_message: JSON.parse(e.request.response).status_message,
+				status: e.request.status
+			})
 		}
 	},
 	{
@@ -29,7 +31,7 @@ export const loadFilms = createAsyncThunk<IFilmsListData | undefined, { currentP
 
 interface IInitialState {
 	status: LoadingStatusType;
-	error: null | string;
+	error: null | ErrorPayload;
 	entities: IFilmFromList[];
 	currentPage: number;
 	totalPage: number;
@@ -67,7 +69,7 @@ const FilmsSlice = createSlice({
 				}
 			})
 			.addCase(loadFilms.rejected, (state, action) => {
-				state.error = action.payload?.status_message || action.error.message || 'We got some error';
+				state.error = action.payload || {status: 400, status_message: 'We received an unknown error'};
 				state.status = "rejected";
 			})
 	}

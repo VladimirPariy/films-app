@@ -1,22 +1,28 @@
-import React, {FC} from "react";
+import React, {FC, lazy, Suspense} from "react";
 import {Route, Routes} from "react-router-dom";
 
 import {routesURL} from "../../Lib/Enums/router.enum";
+import Container from "../UI/Container/Container";
+import Loader from "../UI/Loader/Loader";
 
-import WatchlistPage from "../../Pages/WatchlistPage/WatchlistPage";
-import FilmsPage from "../../Pages/FilmsPage/FilmsPage";
-import NotFoundPage from "../../Pages/NotFoundPage/NotFoundPage";
-import MovieDetailsPage from "../../Pages/MovieDatailPage/MovieDetailsPage";
-
+const MovieDetailsPage = lazy(() => import ("../../Pages/MovieDetailPage/MovieDetailsPage"));
+const WatchlistPage = lazy(() => import ("../../Pages/WatchlistPage/WatchlistPage"));
+const NotFoundPage = lazy(() => import ("../../Pages/NotFoundPage/NotFoundPage"));
+const FilmsPage = lazy(() => import ("../../Pages/FilmsPage/FilmsPage"));
 
 const AppRouter: FC = () => {
 	return (
-		<Routes>
-			<Route path={routesURL.allFilms} element={<FilmsPage/>}/>
-			<Route path={routesURL.movieDetails} element={<MovieDetailsPage/>}/>
-			<Route path={routesURL.watchlist} element={<WatchlistPage/>}/>
-			<Route path={routesURL.notFound} element={<NotFoundPage/>}/>
-		</Routes>
+		<Suspense fallback={<Container condition={true}><Loader/></Container>}>
+			<Routes>
+				<Route path={routesURL.allFilms} element={<FilmsPage/>}/>
+				<Route path={routesURL.movieDetails} element={<MovieDetailsPage/>}/>
+				<Route path={routesURL.watchlist}>
+					<Route path={routesURL.watchlist} element={<WatchlistPage/>}/>
+					<Route path={routesURL.watchlistMovieDetails} element={<MovieDetailsPage/>}/>
+				</Route>
+				<Route path={routesURL.notFound} element={<NotFoundPage/>}/>
+			</Routes>
+		</Suspense>
 	
 	);
 };
