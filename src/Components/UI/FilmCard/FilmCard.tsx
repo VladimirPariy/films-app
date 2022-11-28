@@ -2,7 +2,7 @@ import React, {FC, MouseEvent} from "react";
 import {Link, useLocation} from "react-router-dom";
 import {RiBookmarkFill, RiBookmarkLine} from "react-icons/ri";
 
-import styles from './FilmCard.module.scss'
+import styles from './FilmCard.module.scss';
 
 import {UrlEnum} from "../../../Lib/Enums/url.enum";
 import {useHasInWatchlist} from "../../../Lib/Hooks/useHasInWatchlist";
@@ -22,8 +22,8 @@ interface Props {
 
 const FilmCard: FC<Props> = (props) => {
 	
-	const hasInWatchlist = useHasInWatchlist(props.ID)
-	const location = useLocation()
+	const hasInWatchlist = useHasInWatchlist(props.ID);
+	const location = useLocation();
 	
 	return (
 		<Link className={styles.filmCardContainer}

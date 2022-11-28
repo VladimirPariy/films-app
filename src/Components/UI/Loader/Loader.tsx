@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 
-import styles from './Loader.module.scss'
+import styles from './Loader.module.scss';
 
 
 const Loader: FC = () => {

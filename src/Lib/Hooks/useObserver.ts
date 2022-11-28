@@ -16,10 +16,11 @@ export const useObserver: IUseObserver = (ref, canLoad, isLoading, callback) => 
 		if (observer.current) observer.current?.disconnect();
 		const cb = function (entries: IntersectionObserverEntry[], observer: IntersectionObserver): void {
 			if (entries[0].isIntersecting && canLoad) {
-				callback()
+				callback();
 			}
 		};
 		observer.current = new IntersectionObserver(cb);
 		if (ref.current) observer.current.observe(ref.current);
-	}, [isLoading])
-}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [isLoading]);
+};

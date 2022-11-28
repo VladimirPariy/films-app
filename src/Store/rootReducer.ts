@@ -9,13 +9,13 @@ export const rootReducer = combineReducers({
 	films: filmsReducer,
 	movieDetails: movieDetailsReducer,
 	watchlist: watchlistReducer
-})
+});
 
 const persistConfig = {
 	key: 'root',
 	version: 1,
 	storage,
 	blacklist: ['films', 'movieDetails']
-}
+};
 
-export const persistedReducer = persistReducer(persistConfig, rootReducer)
+export const persistedReducer = persistReducer(persistConfig, rootReducer);

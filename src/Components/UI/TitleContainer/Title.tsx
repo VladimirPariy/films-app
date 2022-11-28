@@ -2,7 +2,7 @@ import React, {FC, ReactNode} from "react";
 import styles from "./TitleContainer.module.scss";
 
 interface Props {
-	children: ReactNode
+	children: ReactNode;
 }
 
 const Title: FC<Props> = (props) => {

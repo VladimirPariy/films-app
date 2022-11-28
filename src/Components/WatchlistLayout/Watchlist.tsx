@@ -14,12 +14,12 @@ const EmptyList = lazy(() => import ("../UI/EmptyList/EmptyList"));
 
 
 const Watchlist: FC = () => {
-	const watchlist = useAppSelector(selectWatchlist)
+	const watchlist = useAppSelector(selectWatchlist);
 	const dispatch = useAppDispatch();
 	
 	const watchlistClickHandler = (e: MouseEvent, ID: number) => {
 		e.preventDefault();
-		dispatch(removeFromWatchlist(ID))
+		dispatch(removeFromWatchlist(ID));
 	};
 	
 	return (

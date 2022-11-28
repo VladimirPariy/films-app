@@ -1,10 +1,10 @@
 import React, {FC} from "react";
 
-import styles from './Error.module.scss'
+import styles from './Error.module.scss';
 import {ErrorPayload} from "../../../Store/storeTypes";
 
 interface Props {
-	error: ErrorPayload
+	error: ErrorPayload;
 }
 
 const Error: FC<Props> = (props) => {

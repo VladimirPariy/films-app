@@ -1,9 +1,9 @@
 import React, {FC, ReactNode} from "react";
-import styles from './Container.module.scss'
+import styles from './Container.module.scss';
 
 interface Props {
 	condition: boolean;
-	children: ReactNode
+	children: ReactNode;
 }
 
 const Container: FC<Props> = (props) => {

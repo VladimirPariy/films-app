@@ -7,10 +7,10 @@ import {addInWatchlist, removeFromWatchlist, selectWatchlist} from "../../Store/
 import Loader from "../UI/Loader/Loader";
 import Container from "../UI/Container/Container";
 import FilmsGridContainer from "../UI/FilmsGridContainer/FilmsGridContainer";
+import FilmCard from "../UI/FilmCard/FilmCard";
 import Title from "../UI/TitleContainer/Title";
 
 const Error = lazy(() => import ("../UI/Error/Error"));
-const FilmCard = lazy(() => import ("../UI/FilmCard/FilmCard"));
 
 
 const AllFilms: FC = () => {
@@ -34,8 +34,8 @@ const AllFilms: FC = () => {
 	
 	const watchlistClickHandler = (e: MouseEvent, ID: number) => {
 		e.preventDefault();
-		const hasInWatchlist = !!watchlist.find(film => film.id === ID)
-		hasInWatchlist ? dispatch(removeFromWatchlist(ID)) : dispatch(addInWatchlist(films.find(movie => movie.id === ID)))
+		const hasInWatchlist = !!watchlist.find(film => film.id === ID);
+		hasInWatchlist ? dispatch(removeFromWatchlist(ID)) : dispatch(addInWatchlist(films.find(movie => movie.id === ID)));
 	};
 	
 	return (
@@ -53,17 +53,15 @@ const AllFilms: FC = () => {
 						Most popular
 					</Title>
 					<FilmsGridContainer>
-						<Suspense fallback={<Loader/>}>
-							{films.map(movie => (
-								<FilmCard key={movie.id}
-													ID={movie.id}
-													title={movie.title}
-													poster_path={movie.poster_path}
-													release_date={movie.release_date}
-													vote_average={movie.vote_average}
-													clickHandler={watchlistClickHandler}/>
-							))}
-						</Suspense>
+						{films.map(movie => (
+							<FilmCard key={movie.id}
+												ID={movie.id}
+												title={movie.title}
+												poster_path={movie.poster_path}
+												release_date={movie.release_date}
+												vote_average={movie.vote_average}
+												clickHandler={watchlistClickHandler}/>
+						))}
 					</FilmsGridContainer>
 				</>
 			)}

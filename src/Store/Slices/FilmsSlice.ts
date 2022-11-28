@@ -8,7 +8,9 @@ import imdbAPI from "../../Lib/api/imdbAPI";
 import {AxiosError} from "axios";
 
 
-export const loadFilms = createAsyncThunk<IFilmsListData | undefined, { currentPage: number }, { state: RootState, rejectValue: ErrorPayload }>(
+export const loadFilms = createAsyncThunk<IFilmsListData | undefined,
+	{ currentPage: number },
+	{ state: RootState, rejectValue: ErrorPayload }>(
 	'@@films/loadingFilms',
 	async ({currentPage}, thunkAPI) => {
 		try {
@@ -63,7 +65,13 @@ const FilmsSlice = createSlice({
 				state.error = null;
 				state.status = "received";
 				if (action.payload) {
-					state.entities = state.entities.concat(action.payload.results);
+					//if api response contains duplicates
+					// const payloadWithoutDuplicate = action.payload.results.filter(film => {
+					// 	const duplicate = state.entities.find(ent => ent.id === film.id)
+					// 	return film.id !== duplicate?.id
+					// })
+					
+					state.entities = state.entities.concat(action.payload.results); //payloadWithoutDuplicate
 					state.currentPage = action.payload.page;
 					state.totalPage = action.payload.total_pages;
 				}

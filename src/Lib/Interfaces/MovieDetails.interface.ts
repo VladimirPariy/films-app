@@ -63,7 +63,7 @@ export interface IMovieDetails extends IMovie {
 	production_countries: IProductionCountries[];
 	spoken_languages: ISpokenLanguages[];
 	videos: {
-		results: ITrailer[]
+		results: ITrailer[];
 	}
 }
 

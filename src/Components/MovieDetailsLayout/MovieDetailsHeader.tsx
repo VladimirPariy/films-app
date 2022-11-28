@@ -22,15 +22,15 @@ interface Props {
 
 const MovieDetailsHeader: FC<Props> = (props) => {
 	const dispatch = useAppDispatch();
-	const hasInWatchlist = useHasInWatchlist(props.ID)
+	const hasInWatchlist = useHasInWatchlist(props.ID);
 	
 	const runTime = getTime(props.runtime);
 	
 	const watchlistClickHandler = async (e: MouseEvent, ID: number) => {
 		e.preventDefault();
 		if (props.imdb_id) {
-			const movie = await ImdbAPI.findMovie(props.imdb_id)
-			hasInWatchlist ? dispatch(removeFromWatchlist(ID)) : dispatch(addInWatchlist(movie[0]))
+			const movie = await ImdbAPI.findMovie(props.imdb_id);
+			hasInWatchlist ? dispatch(removeFromWatchlist(ID)) : dispatch(addInWatchlist(movie[0]));
 		}
 	};
 	

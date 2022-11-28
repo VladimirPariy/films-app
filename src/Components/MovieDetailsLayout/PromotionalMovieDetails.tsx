@@ -8,7 +8,9 @@ import {getTrailer} from "../../Lib/Utils/getTrailer";
 
 interface Props {
 	poster_path: string | null;
-	trailer: { results: ITrailer[]; }
+	trailer: {
+		results: ITrailer[];
+	}
 }
 
 const PromotionalMovieDetails: FC<Props> = (props) => {

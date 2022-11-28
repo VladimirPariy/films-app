@@ -7,7 +7,9 @@ import imdbAPI from "../../Lib/api/imdbAPI";
 import {AxiosError} from "axios";
 
 
-export const loadMovieDetails = createAsyncThunk<IMovieDetails | undefined, { id: string }, { rejectValue: ErrorPayload }>(
+export const loadMovieDetails = createAsyncThunk<IMovieDetails | undefined,
+	{ id: string },
+	{ rejectValue: ErrorPayload }>(
 	'@@details/loadingDetails',
 	async ({id}, thunkAPI) => {
 		try {
@@ -66,6 +68,6 @@ export const movieDetailsReducer = MovieDetailsSlice.reducer;
 
 export const {clearState} = MovieDetailsSlice.actions;
 
-export const selectDetails = (state: RootState) => state.movieDetails.entities
-export const selectIsLoadingDetails = (state: RootState) => state.movieDetails.status
-export const selectDetailsError = (state: RootState) => state.movieDetails.error
+export const selectDetails = (state: RootState) => state.movieDetails.entities;
+export const selectIsLoadingDetails = (state: RootState) => state.movieDetails.status;
+export const selectDetailsError = (state: RootState) => state.movieDetails.error;

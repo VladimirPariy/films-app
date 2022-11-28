@@ -1,17 +1,14 @@
-import React, {FC, lazy, Suspense} from "react";
+import React, {FC} from "react";
 
 import AllFilms from "../../Components/AllFilmsLayout/AllFilms";
-import Loader from "../../Components/UI/Loader/Loader";
+import Observer from "../../Components/Observer/Observer";
 
-const Observer = lazy(() => import ("../../Components/Observer/Observer"));
 
 const FilmsPage: FC = () => {
 	return (
 		<>
 			<AllFilms/>
-			<Suspense fallback={<Loader/>}>
-				<Observer/>
-			</Suspense>
+			<Observer/>
 		</>
 	);
 };

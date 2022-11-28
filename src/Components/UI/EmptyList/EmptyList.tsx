@@ -1,11 +1,8 @@
 import React, {FC} from "react";
 
-import styles from './EmptyList.module.scss'
+import styles from './EmptyList.module.scss';
 
-interface Props {
-}
-
-const EmptyList: FC<Props> = (props) => {
+const EmptyList: FC = () => {
 	return (
 		<div className={styles.emptyListContainer}>
 			<div className={styles.title}>

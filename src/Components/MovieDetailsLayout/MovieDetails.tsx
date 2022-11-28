@@ -8,11 +8,11 @@ import {clearState, loadMovieDetails, selectDetails, selectDetailsError, selectI
 
 import {useCleanup} from "../../Lib/Hooks/useCleanup";
 
-import Loader from "../UI/Loader/Loader";
 import MovieDetailsHeader from "./MovieDetailsHeader";
 import PromotionalMovieDetails from "./PromotionalMovieDetails";
 import MovieDescription from "./MovieDescription";
 import ExtraMovieDetails from "./ExtraMovieDetails";
+import Loader from "../UI/Loader/Loader";
 import Container from "../UI/Container/Container";
 
 const Error = lazy(() => import ("../UI/Error/Error"));
