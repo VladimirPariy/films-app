@@ -1,4 +1,4 @@
-import React, {FC, useEffect} from "react";
+import React, {FC, lazy, Suspense, useEffect} from "react";
 import {useParams} from "react-router";
 
 import styles from './MovieDetails.module.scss'
@@ -13,8 +13,9 @@ import MovieDetailsHeader from "./MovieDetailsHeader";
 import PromotionalMovieDetails from "./PromotionalMovieDetails";
 import MovieDescription from "./MovieDescription";
 import ExtraMovieDetails from "./ExtraMovieDetails";
-import Error from "../UI/Error/Error";
 import Container from "../UI/Container/Container";
+
+const Error = lazy(() => import ("../UI/Error/Error"));
 
 const MovieDetails: FC = () => {
 	
@@ -44,7 +45,9 @@ const MovieDetails: FC = () => {
 			}
 			{error &&
 				<Container condition={Object.keys(movieDetails).length === 0}>
-					<Error error={error}/>
+					<Suspense fallback={<Loader/>}>
+						<Error error={error}/>
+					</Suspense>
 				</Container>
 			}
 			{Object.keys(movieDetails).length !== 0 &&

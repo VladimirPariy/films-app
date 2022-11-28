@@ -1,4 +1,4 @@
-import React, {FC, MouseEvent, useEffect} from "react";
+import React, {FC, lazy, MouseEvent, Suspense, useEffect} from "react";
 
 import {useAppDispatch, useAppSelector} from "../../Store/storeTypes";
 import {loadFilms, selectAllFilms, selectCurrentPage, selectError, selectIsLoading} from "../../Store/Slices/FilmsSlice";
@@ -7,9 +7,10 @@ import {addInWatchlist, removeFromWatchlist, selectWatchlist} from "../../Store/
 import Loader from "../UI/Loader/Loader";
 import Container from "../UI/Container/Container";
 import FilmsGridContainer from "../UI/FilmsGridContainer/FilmsGridContainer";
-import FilmCard from "../UI/FilmCard/FilmCard";
 import Title from "../UI/TitleContainer/Title";
-import Error from "../UI/Error/Error";
+
+const Error = lazy(() => import ("../UI/Error/Error"));
+const FilmCard = lazy(() => import ("../UI/FilmCard/FilmCard"));
 
 
 const AllFilms: FC = () => {
@@ -41,7 +42,9 @@ const AllFilms: FC = () => {
 		<>
 			{error &&
 				<Container condition={films.length === 0}>
-					<Error error={error}/>
+					<Suspense fallback={<Loader/>}>
+						<Error error={error}/>
+					</Suspense>
 				</Container>
 			}
 			{films.length > 0 && (
@@ -50,15 +53,17 @@ const AllFilms: FC = () => {
 						Most popular
 					</Title>
 					<FilmsGridContainer>
-						{films.map(movie => (
-							<FilmCard key={movie.id}
-												ID={movie.id}
-												title={movie.title}
-												poster_path={movie.poster_path}
-												release_date={movie.release_date}
-												vote_average={movie.vote_average}
-												clickHandler={watchlistClickHandler}/>
-						))}
+						<Suspense fallback={<Loader/>}>
+							{films.map(movie => (
+								<FilmCard key={movie.id}
+													ID={movie.id}
+													title={movie.title}
+													poster_path={movie.poster_path}
+													release_date={movie.release_date}
+													vote_average={movie.vote_average}
+													clickHandler={watchlistClickHandler}/>
+							))}
+						</Suspense>
 					</FilmsGridContainer>
 				</>
 			)}

@@ -35,7 +35,7 @@ const FilmCard: FC<Props> = (props) => {
 			</Button>
 			<div className={styles.imgContainer}>
 				<img src={`${UrlEnum.imgURL}${props.poster_path}`}
-						 alt="Movie poster"/>
+						 alt="Movie poster" loading="lazy"/>
 			</div>
 			<FilmInfo release_date={props.release_date}
 								vote_average={props.vote_average}

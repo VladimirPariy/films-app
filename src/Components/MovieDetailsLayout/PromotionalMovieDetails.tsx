@@ -18,7 +18,8 @@ const PromotionalMovieDetails: FC<Props> = (props) => {
 			{props.poster_path &&
 				<img className={styles.poster}
 						 src={`${UrlEnum.imgURL}${props.poster_path}`}
-						 alt="poster"/>
+						 alt="poster"
+						 loading="lazy"/>
 			}
 			{trailer &&
 				<iframe src={`${UrlEnum.trailerURL}${trailer.key}`}
@@ -27,8 +28,8 @@ const PromotionalMovieDetails: FC<Props> = (props) => {
 								security='SameSite=Strict'
 								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 								allowFullScreen
-								className={styles.trailer}/>
-				
+								className={styles.trailer}
+								loading="lazy"/>
 			}
 		</div>
 	);

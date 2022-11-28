@@ -1,4 +1,4 @@
-import React, {FC, MouseEvent} from "react";
+import React, {FC, lazy, MouseEvent, Suspense} from "react";
 
 import FilmsGridContainer from "../UI/FilmsGridContainer/FilmsGridContainer";
 import FilmCard from "../UI/FilmCard/FilmCard";
@@ -6,8 +6,11 @@ import FilmCard from "../UI/FilmCard/FilmCard";
 import {useAppDispatch, useAppSelector} from "../../Store/storeTypes";
 import {removeFromWatchlist, selectWatchlist} from "../../Store/Slices/WatchlistSlice";
 
-import EmptyList from "../UI/EmptyList/EmptyList";
 import Title from "../UI/TitleContainer/Title";
+import Loader from "../UI/Loader/Loader";
+import Container from "../UI/Container/Container";
+
+const EmptyList = lazy(() => import ("../UI/EmptyList/EmptyList"));
 
 
 const Watchlist: FC = () => {
@@ -24,7 +27,9 @@ const Watchlist: FC = () => {
 			<Title>
 				Watchlist
 			</Title>
-			{watchlist.length === 0 && <EmptyList/>}
+			<Suspense fallback={<Container condition={true}><Loader/></Container>}>
+				{watchlist.length === 0 && <EmptyList/>}
+			</Suspense>
 			<FilmsGridContainer>
 				{watchlist.map(film => (
 					<FilmCard key={film.id}
