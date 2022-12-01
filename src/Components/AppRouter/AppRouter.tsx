@@ -9,6 +9,8 @@ const MovieDetailsPage = lazy(() => import ("../../Pages/MovieDetailPage/MovieDe
 const WatchlistPage = lazy(() => import ("../../Pages/WatchlistPage/WatchlistPage"));
 const NotFoundPage = lazy(() => import ("../../Pages/NotFoundPage/NotFoundPage"));
 const FilmsPage = lazy(() => import ("../../Pages/FilmsPage/FilmsPage"));
+const RegistrationPage = lazy(() => import ("../../Pages/RegistrationPage/RegistrationPage"));
+const LoginPage = lazy(()=> import("../../Pages/LoginPage/LoginPage"));
 
 const AppRouter: FC = () => {
 	return (
@@ -20,6 +22,8 @@ const AppRouter: FC = () => {
 					<Route path={routesURL.watchlist} element={<WatchlistPage/>}/>
 					<Route path={routesURL.watchlistMovieDetails} element={<MovieDetailsPage/>}/>
 				</Route>
+				<Route path={routesURL.registration} element={<RegistrationPage/>}/>
+				<Route path={routesURL.login} element={<LoginPage/>}/>
 				<Route path={routesURL.notFound} element={<NotFoundPage/>}/>
 			</Routes>
 		</Suspense>

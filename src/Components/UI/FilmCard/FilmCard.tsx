@@ -7,7 +7,7 @@ import styles from './FilmCard.module.scss';
 import {UrlEnum} from "../../../Lib/Enums/url.enum";
 import {useHasInWatchlist} from "../../../Lib/Hooks/useHasInWatchlist";
 
-import Button from "../Button/Button";
+import AddInWatchlistBtn from "../AddInWatchlistBtn/AddInWatchlistBtn";
 import FilmInfo from "./FilmInfo";
 
 
@@ -28,11 +28,11 @@ const FilmCard: FC<Props> = (props) => {
 	return (
 		<Link className={styles.filmCardContainer}
 					to={location.pathname === '/watchlist' ? `${props.ID}` : `movie/${props.ID}`}>
-			<Button className={styles.bookmarkContainer}
-							clickHandler={props.clickHandler}
-							ID={props.ID}>
+			<AddInWatchlistBtn className={styles.bookmarkContainer}
+												 clickHandler={props.clickHandler}
+												 ID={props.ID}>
 				{hasInWatchlist ? <RiBookmarkFill/> : <RiBookmarkLine/>}
-			</Button>
+			</AddInWatchlistBtn>
 			<div className={styles.imgContainer}>
 				<img src={`${UrlEnum.imgURL}${props.poster_path}`}
 						 alt="Movie poster" loading="lazy"/>

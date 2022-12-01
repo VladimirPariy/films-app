@@ -1,5 +1,9 @@
+$height: calc(100vh - 50px);
+$width: calc(100vw - 85px);
+
 .true {
-  height: 100vh;
+  height: $height;
+  margin-top: -25px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,4 +11,11 @@
 
 .false {
   margin: 0 auto;
+}
+
+@media screen and (min-width: 769px) {
+  .true {
+    height: 100vh;
+    margin-top: 0;
+  }
 }

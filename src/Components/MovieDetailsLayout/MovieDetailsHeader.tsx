@@ -9,7 +9,7 @@ import {getTime} from "../../Lib/Utils/getTime";
 import ImdbAPI from "../../Lib/api/imdbAPI";
 import {useHasInWatchlist} from "../../Lib/Hooks/useHasInWatchlist";
 
-import Button from "../UI/Button/Button";
+import AddInWatchlistBtn from "../UI/AddInWatchlistBtn/AddInWatchlistBtn";
 
 interface Props {
 	title: string;
@@ -48,8 +48,8 @@ const MovieDetailsHeader: FC<Props> = (props) => {
 						{props.status}
 					</div>
 				</div>
-				<Button className={styles.bookmark}
-								clickHandler={watchlistClickHandler} ID={props.ID}>
+				<AddInWatchlistBtn className={styles.bookmark}
+													 clickHandler={watchlistClickHandler} ID={props.ID}>
 					{hasInWatchlist ?
 						<span>
 							<span>&#10003;</span>
@@ -59,7 +59,7 @@ const MovieDetailsHeader: FC<Props> = (props) => {
 							<span>+</span>
 							Add to Watchlist
 						</span>}
-				</Button>
+				</AddInWatchlistBtn>
 			</div>
 		</div>
 	);

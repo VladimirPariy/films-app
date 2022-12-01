@@ -23,7 +23,7 @@ const Watchlist: FC = () => {
 	};
 	
 	return (
-		<>
+		<div>
 			<Title>
 				Watchlist
 			</Title>
@@ -41,7 +41,7 @@ const Watchlist: FC = () => {
 										clickHandler={watchlistClickHandler}/>
 				))}
 			</FilmsGridContainer>
-		</>
+		</div>
 	);
 };
 

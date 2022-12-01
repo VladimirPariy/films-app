@@ -2,8 +2,8 @@
 
 .contentWrapper {
   width: $full;
-  min-height: $screen_h;
-  margin: auto;
+  min-height: $full;
+  margin: 0 auto;
 }
 
 @media screen and (min-width: 1280px) {
