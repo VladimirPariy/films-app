@@ -1,0 +1,5 @@
+@mixin centered_block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

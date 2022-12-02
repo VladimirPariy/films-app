@@ -1,0 +1,204 @@
+@use "scss/index" as *;
+
+.sidebarWrapper {
+  position: relative;
+  width: $screen_w;
+  height: 50px;
+  z-index: 2;
+
+  .sidebarContainer {
+    position: fixed;
+    background: $dark_blue;
+    width: $full;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    box-shadow: 15px 15px 25px rgba(0, 0, 0, 0.2);
+    height: 150px;
+    transition-duration: $transition_dur;
+    overflow: hidden;
+
+    .logo {
+      position: absolute;
+      color: rgb(253, 70, 72);
+      transform: translate(-50%, -50%);
+      top: 25px;
+      left: 25px;
+
+      svg {
+        width: 20px;
+        height: 20px;
+        transition-duration: $transition_dur;
+      }
+    }
+
+    .logoDuringSidebarToggling > svg {
+      transform: rotate(360deg);
+      transition-duration: $transition_dur;
+    }
+
+    .toggleContainer {
+      position: relative;
+
+      .arrowForOpeningSidebar {
+        color: $dark_blue;
+        position: absolute;
+        background: $white;
+        @include centered_block;
+        padding: 5px;
+        border-radius: $circle;
+        border: 1px solid $dark_blue;
+        transition-duration: $transition_dur;
+        cursor: pointer;
+        top: 14px;
+        right: 20px;
+        transform: rotate(90deg);
+      }
+
+      .arrowForClosingSidebar {
+        transform: rotate(270deg);
+      }
+    }
+
+    nav {
+      padding: 7px;
+
+      .sidebarMenu {
+        padding-inline-start: 0;
+        position: relative;
+        list-style: none;
+        margin: 50px 0 10px 0;
+
+        > li:hover {
+          transform: scale(1.05);
+          transition-duration: $transition_dur;
+        }
+
+        > li {
+          transition-duration: $transition_dur;
+          padding: 10px 8px;
+          cursor: pointer;
+          position: relative;
+          border-radius: 10px;
+          width: 200px;
+          margin: 0 auto;
+
+          > a {
+            display: flex;
+            align-items: center;
+            color: $light_grey;
+            text-decoration: none;
+            position: relative;
+
+            .watchlistCounter {
+              position: absolute;
+              right: 25%;
+              padding: 2px 8px;
+              background: rgb(255, 166, 22);
+              border-radius: $circle;
+              font-size: 14px;
+            }
+
+            > svg {
+              margin-top: 0;
+              min-height: 20px;
+              min-width: 20px;
+            }
+
+            > span {
+              position: relative;
+              display: block;
+              padding: 0 20px;
+              height: 20px;
+              line-height: 20px;
+              text-align: start;
+              white-space: nowrap;
+            }
+          }
+        }
+
+        > li > a.active {
+          color: $white;
+        }
+      }
+    }
+  }
+}
+
+.sidebarWrapperClosed {
+  height: 50px;
+
+  .sidebarContainerClosed {
+    height: 50px;
+    transition-duration: $transition_dur;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .sidebarWrapper {
+    position: relative;
+    width: 60px;
+    height: $screen_h;
+    margin-right: 30px;
+
+    .sidebarContainer {
+      inset: 20px;
+      width: 200px;
+      border-radius: 15px;
+      min-height: 280px;
+      height: auto;
+      overflow: visible;
+
+      .logo {
+        top: 25px;
+        left: 50%;
+      }
+
+      .toggleContainer {
+        .arrowForOpeningSidebar {
+          top: 70px;
+          right: -14px;
+          transform: rotate(0deg);
+        }
+
+        .arrowForClosingSidebar {
+          transform: rotate(180deg);
+        }
+      }
+
+      nav {
+        overflow: hidden;
+
+        .sidebarMenu {
+          flex-direction: column;
+          margin: 100px 0 0 0;
+
+          > li {
+            margin: 0;
+            width: auto;
+            font-size: 22px;
+
+            > a > .watchlistCounter {
+              right: -8px;
+              font-size: 16px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .sidebarWrapperClosed {
+    width: 60px;
+
+    .sidebarContainerClosed {
+      width: 50px;
+
+      nav > .sidebarMenu > li > a > .watchlistCounter {
+        right: -6px;
+        top: -4px;
+        font-size: 10px;
+        padding: 1px 5px;
+      }
+    }
+  }
+}
